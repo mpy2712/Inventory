@@ -1,4 +1,4 @@
-<?php
+d<?php
 if ($this->session->userdata('is_authenticated') == FALSE) {
     redirect('users/login');
 }
@@ -134,10 +134,10 @@ if ($this->session->userdata('is_authenticated') == FALSE) {
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Reports <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?php echo base_url() . 'reports/' ?>">Stock Ledger</a>
+                                    <a href="<?php echo base_url() . 'reports/stockLedgerSearch' ?>">Stock Ledger</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo base_url() . 'employee/' ?>">Stock Summary</a>
+                                    <a href="<?php echo base_url() . 'reports/stockSummarySearch' ?>">Stock Summary</a>
                                 </li>
                                 
                                 

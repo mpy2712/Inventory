@@ -10,9 +10,13 @@ class Reports extends CI_Controller {
        
         
     }
-    function index(){
+    function stockLedgerindex(){
        
         $this->template->load('default_layout', 'stockLedgers/index','');
+    }
+    function stockSummaryindex(){
+       
+        $this->template->load('default_layout', 'stockSummarys/index','');
     }
     
     function stockLedgerSearch(){
@@ -21,10 +25,11 @@ class Reports extends CI_Controller {
         $this->form_validation->set_rules('frmDate', 'From Date', 'trim|required');
         $this->form_validation->set_rules('toDate', 'To Date', 'trim|required');            
         if ($this->form_validation->run() == FALSE) {
-            return $this->index();
+            return $this->stockLedgerindex();
         }
 
-        if ($this->input->post('item') ){
+        if ($this->input->post('item') )
+        {
             $this->db->select('*')->from('stock_evaluation')->join('itembasket', 'itembasket.id = stock_evaluation.item_id')
            ;
            $this->db->where('itembasket.id',$this->input->post('item'));
@@ -35,6 +40,33 @@ class Reports extends CI_Controller {
            $data['stockLedger'] = $query->result();   
            $this->template->load('default_layout','stockLedgers/index',$data);
         }
+       
+        
+    }
+
+    function stockSummarySearch(){
+        $this->load->library('form_validation');
+       // $this->form_validation->set_rules('item', 'MRN No', 'trim|required');
+        $this->form_validation->set_rules('frmDate', 'From Date', 'trim|required');
+        $this->form_validation->set_rules('toDate', 'To Date', 'trim|required');            
+        if ($this->form_validation->run() == FALSE) {
+            return $this->stockSummaryindex();
+        }
+
+       
+            $this->db->select('*')->from('stock_evaluation')->join('itembasket', 'itembasket.id = stock_evaluation.item_id')
+           ;          
+           if (!empty($this->input->post('item')))
+           {
+           $this->db->where('itembasket.id',$this->input->post('item'));
+           }
+           $this->db->where('stock_evaluation.created_date >=', strtotime($this->input->post('item')));
+           $this->db->where('stock_evaluation.created_date <=', strtotime($this->input->post('toDate')));
+           $this->db->order_by("itembasket.id", "asc");
+           $query=$this->db->get();            
+           $data['stockSummary'] = $query->result();          
+           $this->template->load('default_layout','stockSummarys/index',$data);
+        
        
         
     }
