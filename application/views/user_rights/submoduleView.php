@@ -1,9 +1,9 @@
 
     <div class="col-lg-12">
-        <h2>Sub Category Details</h2>
+        <h2>Sub Module Details</h2>
         <div class="panel panel-default">
             <div class="panel-heading">
-                 <p><a href="<?php echo base_url() . 'subcategory/add_subcategory_view' ?>">Add New Sub Category</a></p>
+                 <p><a href="<?php echo base_url() . 'submodule/add_submodule_view' ?>">Add New Sub Module</a></p>
            </div>
             <div class="panel-body">
 
@@ -12,8 +12,8 @@
                             <tr>
                        
                             <th>Sr. No</th>
-                            <th>Sub Category Name</th>
-                            <th>Sub Category Code</th>
+                            <th>Sub Module Name</th>
+                            <th>Sub Module Code</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -28,8 +28,8 @@
 
                             <tr class="odd gradeX">
                                 <td><?php echo $i++; ?></td>
-                                <td><?php echo $r->subCatName; ?></td>
-                                <td><?php echo $r->subCatCode; ?></td>
+                                <td><?php echo $r->subModuleName; ?></td>
+                                <td><?php echo $r->subModuleCode; ?></td>
                                 <td class="center"><a href ="<?php echo $editUrl; ?> ">Edit</a></td>
                                 <td class="center"><a href ="<?php echo $delUrl; ?> ">Delete</a></td>
                             </tr>

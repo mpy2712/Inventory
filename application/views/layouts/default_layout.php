@@ -71,10 +71,10 @@ if ($this->session->userdata('is_authenticated') == FALSE) {
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> User Rights<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?php echo base_url() . 'category/category_view' ?>">Category</a>
+                                    <a href="<?php echo base_url() . 'module/module_view' ?>">Module</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo base_url() . 'subcategory/subCategoryView' ?>">Sub Category</a>
+                                    <a href="<?php echo base_url() . 'submodule/subModuleView' ?>">Sub Module</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url() . 'userform/formView' ?>">User Forms</a>

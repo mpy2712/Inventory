@@ -7,8 +7,8 @@ class Userform extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('Category_model', 'category');
-        $this->load->model('Subcategory_model', 'subcategory');
+        $this->load->model('Module_model', 'module');
+        $this->load->model('Submodule_model', 'submodule');
         $this->load->model('UserForm_model', 'userform');
     }
 
@@ -28,7 +28,7 @@ class Userform extends CI_Controller {
     }
 
     public function add_form() {
-        $query = $this->db->get("category");
+        $query = $this->db->get("module");
         $data['records'] = $query->result();
         $this->template->load('default_layout', 'user_rights/userForms', $data);
     }
@@ -38,8 +38,8 @@ class Userform extends CI_Controller {
         $data = array(
             'formName' => $this->input->post('frmName'),
             'formUrl' => $this->input->post('frmUrl'),
-            'catID' => $this->input->post('catName'),
-            'subcatID' => $this->input->post('subcatName'),
+            'moduleID' => $this->input->post('catName'),
+            'submoduleID' => $this->input->post('subcatName'),
             'status' => $this->input->post('status')
         );
 
@@ -51,7 +51,7 @@ class Userform extends CI_Controller {
     }
 
     public function myformAjax($id) {
-        $result = $this->db->where("catID", $id)->get("subcategory")->result();
+        $result = $this->db->where("moduleID", $id)->get("submodule")->result();
 
         echo json_encode($result);
     }

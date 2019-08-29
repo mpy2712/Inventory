@@ -11,8 +11,8 @@
                     <tr>
 
                         <th>Sr. No</th>
-                        <th>Category</th>
-                        <th>SubCategory</th>
+                        <th>Module</th>
+                        <th>SubModule</th>
                         <th>Form Name</th>
                         <th>Form Url</th>
                         <th>Status</th>
@@ -31,8 +31,8 @@
                         ?>
                         <tr class="odd gradeX">
                             <td><?php echo $i++; ?></td>
-                            <td><?php echo $r->catID; ?></td>
-                             <td><?php echo $r->subCatID; ?></td>
+                            <td><?php echo $r->moduleID; ?></td>
+                             <td><?php echo $r->subModuleID; ?></td>
                             <td><?php echo $r->formName; ?></td>
                             <td><?php echo $r->formUrl; ?></td>
                              <td><?php echo $showStatus[$r->status]; ?></td>

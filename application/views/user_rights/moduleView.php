@@ -1,8 +1,8 @@
     <div class="col-lg-12">
-        <h2>Category Details</h2>
+        <h2>Modules Details</h2>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <p><a href="<?php echo base_url() . 'category/add_category_view' ?>">Add New Category</a></p>
+                <p><a href="<?php echo base_url() . 'module/add_module_view' ?>">Add New Module</a></p>
             </div>
             <div class="panel-body">
               
@@ -10,8 +10,8 @@
                         <thead>
                             <tr>
                                 <th>Sr. No</th>
-                                <th>Category Name</th>
-                                <th>Category Code</th>
+                                <th>Module Name</th>
+                                <th>Module Code</th>
                                 <th>Action</th>
                                 <th></th>
                             </tr>
@@ -26,8 +26,8 @@
 
                                 <tr class="odd gradeX">
                                     <td><?php echo $i++; ?></td>
-                                    <td><?php echo $r->catName; ?></td>
-                                    <td><?php echo $r->catCode; ?></td>
+                                    <td><?php echo $r->moduleName; ?></td>
+                                    <td><?php echo $r->moduleCode; ?></td>
                                     <td class="center"><a href ="<?php echo $editUrl; ?> ">Edit</a></td>
                                     <td class="center"><a href ="<?php echo $delUrl; ?> ">Delete</a></td>
                                 </tr>

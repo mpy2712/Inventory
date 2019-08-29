@@ -4,16 +4,16 @@
     <?php echo form_open('userform/saveFormData'); ?>  
 
     <div class="form-group">
-        <label>Category </label>
+        <label>Module </label>
         <select class="form-control" name="catName" id="catName">
             <option>Select</option>
             <?php foreach ($records as $r) { ?>
-                <option value="<?php echo $r->id; ?>"><?php echo $r->catName; ?></option>
+                <option value="<?php echo $r->id; ?>"><?php echo $r->moduleName; ?></option>
             <?php } ?>
         </select>
     </div>
     <div class="form-group">
-        <label>Sub Category Name</label>
+        <label>Sub Module Name</label>
         <select class="form-control" name="subcatName" id="catName">
             <option>Select</option>
 
@@ -62,9 +62,9 @@
                     dataType: "json",
                     success: function (data) {
                         $('select[name="subcatName"]').empty();
-                        $('select[name="subcatName"]').append('<option value="">' + 'Select Sub Category' + '</option>');
+                        $('select[name="subcatName"]').append('<option value="">' + 'Select Sub Module' + '</option>');
                         $.each(data, function (key, value) {
-                            $('select[name="subcatName"]').append('<option value="' + value.id + '">' + value.subCatName + '</option>');
+                            $('select[name="subcatName"]').append('<option value="' + value.id + '">' + value.subModuleName + '</option>');
                         });
                     }
                 });

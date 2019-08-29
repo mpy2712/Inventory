@@ -7,8 +7,8 @@ class Role extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('Category_model', 'category');
-        $this->load->model('Subcategory_model', 'subcategory');
+        $this->load->model('Module_model', 'module');
+        $this->load->model('Submodule_model', 'submodule');
         $this->load->model('UserForm_model', 'userform');
         $this->load->model('Role_assignment_model','role');
     }
@@ -23,7 +23,7 @@ class Role extends CI_Controller {
     }
 
     public function roleView() {
-        $query = $this->db->get("category");
+        $query = $this->db->get("module");
         $data['category'] = $query->result();
         $this->template->load('default_layout', 'user_rights/roleCreation', $data);
     }
