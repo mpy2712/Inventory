@@ -11,9 +11,9 @@
                         <thead>
                             <tr>
                        
-                            <th>Sr. No</th>   
-                            <th>Item Code</th>                         
+                            <th>Sr. No</th>                            
                             <th>Item Name</th>
+                            <th>Item Code</th>
                             <th>Quantity</th>
                             <th>Date</th>
                             <th>Edit</th>
@@ -30,8 +30,8 @@
 
                             <tr class="odd gradeX">
                                 <td><?php echo $i++; ?></td>
-                                <td><?php echo $r->ItemCode; ?></td>
                                 <td><?php echo $r->itemName; ?></td>
+                                <td><?php echo $r->ItemCode; ?></td>
                                 <td><?php echo $r->qty; ?></td>
                                 <td><?php echo date('Y-m-d',$r->openingDate); ?></td>
                                 <td class="center"><a href ="<?php echo $editUrl; ?> ">Edit</a></td>

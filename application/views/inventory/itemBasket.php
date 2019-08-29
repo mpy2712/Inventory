@@ -17,17 +17,7 @@
         <label>Item Desc</label>
         <input  class="form-control" name="itemDesc"  id="itemDesc" >
     </div>
-    <div class="form-group">
-        <label>Batch Item</label>
-        <label class="radio-inline">
-            <input type="radio" name="batchItem" id="batchItem" value="Y" checked="">Yes
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="batchItem" id="batchItem" value="N">No
-        </label>
-       
-    </div>
-    
+
     <button type="submit" id="addItem" class="btn btn-primary">Add Item</button>
     <?php echo form_close(); ?>
 

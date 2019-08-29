@@ -1,8 +1,13 @@
-  <link rel="stylesheet" href="<?php echo base_url(); ?>vendor/bootstrap/css/bootstrap.min.css" />
+<html>
+    <head>
+                  <link rel="stylesheet" href="<?php echo base_url(); ?>vendor/bootstrap/css/bootstrap.min.css" />
         <link rel="stylesheet" href="<?php echo base_url(); ?>vendor/metisMenu/metisMenu.min.css" />
         <link rel="stylesheet" href="<?php echo base_url(); ?>dist/css/sb-admin-2.css" class="theme-stylesheet" id="theme-style" />
      
         <link rel="stylesheet" href="<?php echo base_url(); ?>vendor/font-awesome/css/font-awesome.min.css" />
+        <title><?php echo ( isset($title) && $title !='' ) ? $title : 'Tech Arise' ?></title>
+    </head>
+    <body>
    
 
 <div class="container">
@@ -32,13 +37,6 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
                                 </div>
-                                <div class="form-group">
-                                <select class="form-control" name="financialYear" id="financialYear">                                   
-                                    <?php foreach ($records as $r) { ?>
-                                    <option value="<?php echo $r->id; ?>"><?php echo $r->finYear; ?></option>
-                                    <?php } ?>
-                                </select>
-                                </div>
                                 <div class="checkbox">
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me">Remember Me
@@ -53,3 +51,5 @@
             </div>
         </div>
     </div>
+    </body>
+</html>

@@ -11,6 +11,10 @@ class ItemBasket_model extends CI_Model {
          } 
       } 
 
+     function update_item($item,$condition){
+        return $this->db->where("id",$condition)->update("itembasket",$item);
+     } 
+
 public function getNewRandHash($length = 10)
 {
     $taken = true;
@@ -40,6 +44,17 @@ public function insertHash($data) {
     if ($this->db->insert("randaomhash", $data)) { 
        return true; 
     } 
- }     
+ }
+
+ function get_item($item_id = null){
+    if ( $item_id ){
+        return $this->db->where("id",$item_id)->get("itembasket")->row();
+    }
+ }
+ 
+ function getItemLists(){
+     return $this->db->select("itembasket.*,( SELECT SUM(stock_in)- SUM(stock_out) from stock_evaluation where item_id = itembasket.id )as stock")
+             ->get("itembasket")->result();
+ }
  
 }

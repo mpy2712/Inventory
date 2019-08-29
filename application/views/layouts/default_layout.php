@@ -17,7 +17,7 @@ if ($this->session->userdata('is_authenticated') == FALSE) {
          <link rel="stylesheet" href="<?php echo base_url(); ?>vendor/datatables-responsive/dataTables.responsive.css" />
         
         <link rel="stylesheet" href="<?php echo base_url(); ?>dist/css/sb-admin-2.css" class="theme-stylesheet" id="theme-style" />
-        <link rel="stylesheet" href="<?php echo base_url(); ?>vendor/morrisjs/morris.css" />
+        <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>vendor/morrisjs/morris.css" /> -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>vendor/font-awesome/css/font-awesome.min.css" />
         <link rel="stylesheet" href="<?php echo base_url(); ?>vendor/datatables/css/jquery.dataTables.min.css" />
  
@@ -87,8 +87,36 @@ if ($this->session->userdata('is_authenticated') == FALSE) {
                         </li>
 
                          <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Inventory<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Transactions<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                               
+                                <a href="../../config/routes.php"></a>
+                                <li>
+                                <a href="<?php echo base_url() . 'mrn' ?>">MRN</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url() . 'issue' ?>">Issue Slip</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url() . 'return_slip' ?>">Return Slip</a>
+                                </li>
+                                
+                                
+                                
+                                
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Masters <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url() . 'vendors/' ?>">Vendor Master</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url() . 'employee/' ?>">Employee Master</a>
+                                </li>
                                 <li>
                                     <a href="<?php echo base_url() . 'openingStock/openingStockView' ?>">Opening Stock</a>
                                 </li>
@@ -96,13 +124,28 @@ if ($this->session->userdata('is_authenticated') == FALSE) {
                                 <a href="<?php echo base_url() . 'itemBasket/itemBasketView' ?>">Item Creation</a>
                                 </li>
                                 
+                                
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-
                         <!-- /.nav-second-level -->
-                        </li>
 
+                          <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Reports <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url() . 'reports/' ?>">Stock Ledger</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url() . 'employee/' ?>">Stock Summary</a>
+                                </li>
+                                
+                                
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <!-- /.nav-second-level -->
+                       
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -140,25 +183,25 @@ if ($this->session->userdata('is_authenticated') == FALSE) {
 <script type="text/javascript" src="<?php echo base_url(); ?>vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>vendor/datatables-responsive/dataTables.responsive.js"></script>
 
-
-
-
 <script src="<?php echo base_url(); ?>vendor/metisMenu/metisMenu.min.js"></script>
 <script src="<?php echo base_url(); ?>vendor/raphael/raphael.min.js"></script>
-<script src="<?php echo base_url(); ?>vendor/morrisjs/morris.min.js"></script>
-<script src="<?php echo base_url(); ?>data/morris-data.js"></script>
+<!-- <script src="<?php echo base_url(); ?>vendor/morrisjs/morris.min.js"></script> -->
+<!-- <script src="<?php echo base_url(); ?>data/morris-data.js"></script> -->
 <script src="<?php echo base_url(); ?>dist/js/sb-admin-2.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
+<!--<script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>-->
+<!--<script src="<?php echo base_url(); ?>assets/js/app.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery.slimscroll.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery.slimscroll.min.js"></script>-->
+
+
+<!-- <script src="<?php echo base_url(); ?>assets/js/form-validation.min.js"></script> -->
+<!-- <script src="<?php echo base_url(); ?>assets/js/additional-methods.min.js"></script> -->
 
 
 
 
-<script>
-    
-    jQuery(document).ready(function() {
-        jQuery('#dataTables-example').DataTable({
-            responsive: true
-        });
-    });
-    </script>
+
+
 </body>
 </html>

@@ -22,10 +22,11 @@ class OpeningStock extends CI_Controller {
     }
 
     public function openingStockView() {
+       
         $this->db->select('*')->from('openingstock')->join('itembasket', 'itembasket.id = openingstock.itemID');
         $query=$this->db->get();
         //$query = $this->db->get("openingStock");
-        $data['records'] = $query->result();            
+        $data['records'] = $query->result();           
        $this->template->load('default_layout', 'inventory/openingStockView', $data);
     }
 
@@ -42,13 +43,11 @@ class OpeningStock extends CI_Controller {
         $data = array(
             'itemID' => $this->input->post('item'),
             'qty' => $this->input->post('openingStockQty'),
-            'openingDate' => strtotime($this->input->post('openingStockDate'))
+            'date' => strtotime($this->input->post('openingStockDate'))
         );
         $this->Opening_stock_model->insert($data);
-        $this->db->select('*')->from('openingstock')->join('itembasket', 'itembasket.id = openingstock.itemID');
-        $query=$this->db->get();
-        //$query = $this->db->get("openingStock");
-        $data['records'] = $query->result();    
+        $query = $this->db->get("openingstock");
+        $data['records'] = $query->result();
 
         $this->template->load('default_layout', 'inventory/openingStockView', $data);
     }

@@ -36,12 +36,11 @@ class Users extends CI_Controller {
     }
 
     // Login
-    public function login() {  
-        $this->db->select("*");     
-        $this->db->from("financialYear");
-        $this->db->where('status','Active');
-        $query = $this->db->get();
-        $data['records'] = $query->result();
+    public function login() {
+       
+        $data['title'] = 'Login - Tech Arise';
+        $data['metaDescription'] = 'Login';
+        $data['metaKeywords'] = 'Login';
         //$this->load->view('users/login', $data);
         $this->load->view('users/login', $data);
         /// $this->template->load('default_layout', 'users/login','');
@@ -55,7 +54,6 @@ class Users extends CI_Controller {
 
         $this->form_validation->set_rules('email', 'Your Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
-        //$this->form_validation->set_rules('financialYear', 'financialYear', 'trim|required');
         if ($this->form_validation->run() == FALSE) {
             //Field validation failed.  User redirected to login page
             $this->load->view('users/login');
@@ -64,7 +62,6 @@ class Users extends CI_Controller {
             //Field validation succeeded.  Validate against database
             $email = $this->input->post('email');
             $password = $this->input->post('password');
-            $finYear = $this->input->post('financialYear');
 
             $this->user->setEmail($email);
             $this->user->setPassword(MD5($password));
@@ -79,7 +76,8 @@ class Users extends CI_Controller {
                         'name' => $row->name,
                         'email' => $row->email,
                         'is_authenticated' => TRUE,
-                        'finYear'=>$row->finYear
+                        'user_row_id' => $row->id,
+                        
                     );
                     $this->session->set_userdata($sessArray);
                 }
@@ -96,7 +94,6 @@ class Users extends CI_Controller {
         $this->session->unset_userdata('user_id');
         $this->session->unset_userdata('name');
         $this->session->unset_userdata('email');
-        $this->session->unset_userdata('is_authenticated');
         $this->session->unset_userdata('is_authenticated');
         $this->session->sess_destroy();
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
