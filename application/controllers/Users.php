@@ -38,12 +38,14 @@ class Users extends CI_Controller {
     // Login
     public function login() {
        
-        $data['title'] = 'Login - Tech Arise';
-        $data['metaDescription'] = 'Login';
-        $data['metaKeywords'] = 'Login';
+        $this->db->select("*");     
+        $this->db->from("financialYear");
+        $this->db->where('status','Active');
+        $query = $this->db->get();
+        $data['records'] = $query->result();
         //$this->load->view('users/login', $data);
         $this->load->view('users/login', $data);
-        /// $this->template->load('default_layout', 'users/login','');
+       
     }
 
     // Login Action 
@@ -62,6 +64,7 @@ class Users extends CI_Controller {
             //Field validation succeeded.  Validate against database
             $email = $this->input->post('email');
             $password = $this->input->post('password');
+            $finYear = $this->input->post('financialYear');
 
             $this->user->setEmail($email);
             $this->user->setPassword(MD5($password));
@@ -76,8 +79,7 @@ class Users extends CI_Controller {
                         'name' => $row->name,
                         'email' => $row->email,
                         'is_authenticated' => TRUE,
-                        'user_row_id' => $row->id,
-                        
+                        'finYear'=>$row->finYear
                     );
                     $this->session->set_userdata($sessArray);
                 }

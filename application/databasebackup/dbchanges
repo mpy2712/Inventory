@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2019 at 10:32 AM
+-- Generation Time: Aug 29, 2019 at 12:53 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -21,28 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `inventory`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `category`
---
-
-CREATE TABLE `category` (
-  `id` int(11) NOT NULL,
-  `catName` varchar(255) NOT NULL,
-  `catCode` varchar(255) NOT NULL,
-  `status` varchar(2) NOT NULL DEFAULT 'Y'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `category`
---
-
-INSERT INTO `category` (`id`, `catName`, `catCode`, `status`) VALUES
-(1, 'Sales', 'Sale', 'N'),
-(2, 'PURCHASE', 'Purchase', 'N'),
-(3, 'INVENTORY', 'inventory', 'Y');
 
 -- --------------------------------------------------------
 
@@ -111,7 +89,7 @@ CREATE TABLE `issue_slips` (
 --
 
 INSERT INTO `issue_slips` (`id`, `slip_no`, `employee_id`, `issue_date`, `created_by`, `created_date`, `updated_date`) VALUES
-(1, 'ISSUE-F86AA7WJ4K', 2, 1567116000, 1, '2019-08-29 05:56:56', '2019-08-29 09:26:56');
+(1, 'ISSUE-F86AA7WJ4K', 2, 1567116000, 1, '2019-08-29 11:55:52', '2019-08-29 09:26:56');
 
 -- --------------------------------------------------------
 
@@ -135,10 +113,8 @@ CREATE TABLE `issue_slip_item_details` (
 --
 
 INSERT INTO `issue_slip_item_details` (`id`, `item_id`, `batch_no`, `issue_qty`, `issue_date`, `issue_id`, `created_date`, `updated_date`) VALUES
-(1, 1, 'N', 400, 1567116000, 1, '2019-08-29 05:56:56', '2019-08-29 09:26:56'),
-(2, 6, 'N', 200, 1567116000, 1, '2019-08-29 05:56:56', '2019-08-29 09:26:56'),
-(3, 10, 'N', 100, 1567116000, 1, '2019-08-29 05:56:56', '2019-08-29 09:26:56'),
-(4, 13, 'N', 50, 1567116000, 1, '2019-08-29 05:56:56', '2019-08-29 09:26:56');
+(6, 13, 'N', 50, 1567116000, 1, '2019-08-29 11:55:52', '2019-08-29 15:25:52'),
+(7, 1, 'N', 200, -3600, 1, '2019-08-29 11:55:52', '2019-08-29 15:25:52');
 
 -- --------------------------------------------------------
 
@@ -196,8 +172,28 @@ CREATE TABLE `material_receive_note` (
 --
 
 INSERT INTO `material_receive_note` (`id`, `mrn_no`, `mrn_date`, `vendor_id`, `created_by`, `created_date`, `updated_date`) VALUES
-(1, 'MRNTVKO1I41SO', 1567029600, 1, 1, '2019-08-29 05:54:25', '2019-08-29 09:24:25'),
+(1, 'MRNTVKO1I41SO', 1567072800, 1, 1, '2019-08-29 05:54:25', '2019-08-29 09:24:25'),
 (2, 'MRN0LYCMSHGK6', 1567116000, 2, 1, '2019-08-29 07:32:20', '2019-08-29 11:02:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `module`
+--
+
+CREATE TABLE `module` (
+  `id` int(11) NOT NULL,
+  `moduleName` varchar(255) NOT NULL,
+  `moduleCode` varchar(255) NOT NULL,
+  `status` varchar(2) NOT NULL DEFAULT 'Y'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `module`
+--
+
+INSERT INTO `module` (`id`, `moduleName`, `moduleCode`, `status`) VALUES
+(1, 'Inventory', 'INV', 'Y');
 
 -- --------------------------------------------------------
 
@@ -221,12 +217,12 @@ CREATE TABLE `mrn_items_details` (
 --
 
 INSERT INTO `mrn_items_details` (`id`, `item_id`, `batch_no`, `required_qty`, `received_qty`, `mrn_id`, `created_date`, `updated_date`) VALUES
-(1, 1, 'N', 1500, 1500, 1, '2019-08-29 05:54:25', '2019-08-29 09:24:25'),
-(2, 6, 'N', 2000, 2000, 1, '2019-08-29 05:54:25', '2019-08-29 09:24:25'),
-(3, 10, 'N', 4000, 4000, 1, '2019-08-29 05:54:25', '2019-08-29 09:24:25'),
-(4, 13, 'N', 2500, 2500, 1, '2019-08-29 05:54:25', '2019-08-29 09:24:25'),
 (5, 1, 'N', 200, 200, 2, '2019-08-29 07:32:20', '2019-08-29 11:02:20'),
-(6, 12, 'Y', 400, 400, 2, '2019-08-29 07:32:20', '2019-08-29 11:02:20');
+(6, 12, 'Y', 400, 400, 2, '2019-08-29 07:32:20', '2019-08-29 11:02:20'),
+(7, 1, 'N', 1500, 200, 1, '2019-08-29 11:53:04', '2019-08-29 15:23:04'),
+(8, 6, 'N', 2000, 2000, 1, '2019-08-29 11:53:05', '2019-08-29 15:23:05'),
+(9, 10, 'N', 4000, 4000, 1, '2019-08-29 11:53:05', '2019-08-29 15:23:05'),
+(10, 13, 'N', 2500, 2500, 1, '2019-08-29 11:53:05', '2019-08-29 15:23:05');
 
 -- --------------------------------------------------------
 
@@ -379,40 +375,37 @@ CREATE TABLE `stock_evaluation` (
 --
 
 INSERT INTO `stock_evaluation` (`id`, `item_id`, `transaction_id`, `transaction_detail_id`, `stock_in`, `stock_out`, `transaction_type`, `created_date`, `updated_date`) VALUES
-(1, 1, 1, 1, 1500, 0, 'mrn', 1567050865, '2019-08-29 09:24:25'),
-(2, 6, 1, 2, 2000, 0, 'mrn', 1567050865, '2019-08-29 09:24:25'),
-(3, 10, 1, 3, 4000, 0, 'mrn', 1567050865, '2019-08-29 09:24:25'),
-(4, 13, 1, 4, 2500, 0, 'mrn', 1567050866, '2019-08-29 09:24:26'),
-(5, 1, 1, 1, 0, 400, 'issue', 1567051016, '2019-08-29 09:26:56'),
-(6, 6, 1, 2, 0, 200, 'issue', 1567051016, '2019-08-29 09:26:56'),
-(7, 10, 1, 3, 0, 100, 'issue', 1567051016, '2019-08-29 09:26:56'),
-(8, 13, 1, 4, 0, 50, 'issue', 1567051016, '2019-08-29 09:26:56'),
 (9, 1, 2, 5, 200, 0, 'mrn', 1567056740, '2019-08-29 11:02:20'),
-(10, 12, 2, 6, 400, 0, 'mrn', 1567056740, '2019-08-29 11:02:20');
+(10, 12, 2, 6, 400, 0, 'mrn', 1567056740, '2019-08-29 11:02:20'),
+(11, 1, 1, 7, 200, 0, 'mrn', 1567072385, '2019-08-29 15:23:05'),
+(12, 6, 1, 8, 2000, 0, 'mrn', 1567072385, '2019-08-29 15:23:05'),
+(13, 10, 1, 9, 4000, 0, 'mrn', 1567072385, '2019-08-29 15:23:05'),
+(14, 13, 1, 10, 2500, 0, 'mrn', 1567072385, '2019-08-29 15:23:05'),
+(16, 13, 1, 6, 0, 50, 'issue', 1567072552, '2019-08-29 15:25:52'),
+(17, 1, 1, 7, 0, 200, 'issue', 1567072552, '2019-08-29 15:25:52');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subcategory`
+-- Table structure for table `submodule`
 --
 
-CREATE TABLE `subcategory` (
+CREATE TABLE `submodule` (
   `id` int(11) NOT NULL,
-  `catID` int(11) NOT NULL,
-  `subCatName` varchar(255) NOT NULL,
-  `subCatCode` varchar(255) NOT NULL,
+  `moduleID` int(11) NOT NULL,
+  `subModuleName` varchar(255) NOT NULL,
+  `subModuleCode` varchar(255) NOT NULL,
   `status` varchar(2) NOT NULL DEFAULT 'Y'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `subcategory`
+-- Dumping data for table `submodule`
 --
 
-INSERT INTO `subcategory` (`id`, `catID`, `subCatName`, `subCatCode`, `status`) VALUES
-(1, 1, 'Transaction', 'tsale', 'N'),
-(2, 1, 'Masters', 'mSales', 'N'),
-(3, 3, 'Transaction', 'TInventory', 'Y'),
-(4, 3, 'Masters', 'MInventory', 'Y');
+INSERT INTO `submodule` (`id`, `moduleID`, `subModuleName`, `subModuleCode`, `status`) VALUES
+(1, 1, 'Transaction', 'Trans', 'Y'),
+(2, 1, 'Reports', 'Rept', 'Y'),
+(3, 1, 'Masters', 'Mats', 'Y');
 
 -- --------------------------------------------------------
 
@@ -422,8 +415,8 @@ INSERT INTO `subcategory` (`id`, `catID`, `subCatName`, `subCatCode`, `status`) 
 
 CREATE TABLE `userform` (
   `id` int(11) NOT NULL,
-  `catID` int(11) NOT NULL,
-  `subCatID` int(11) NOT NULL,
+  `moduleID` int(11) NOT NULL,
+  `subModuleID` int(11) NOT NULL,
   `formName` varchar(255) NOT NULL,
   `formUrl` varchar(255) NOT NULL,
   `status` int(2) NOT NULL DEFAULT '1'
@@ -433,14 +426,11 @@ CREATE TABLE `userform` (
 -- Dumping data for table `userform`
 --
 
-INSERT INTO `userform` (`id`, `catID`, `subCatID`, `formName`, `formUrl`, `status`) VALUES
-(1, 3, 3, 'Direct MRN', 'materialRecieptNote/view_MRN', 1),
-(2, 3, 3, 'Issue Slip', 'issueSlip/issue_details', 1),
-(3, 3, 3, 'Return Slip', 'returnSlip/return_details', 1),
-(4, 3, 4, 'Item Basket', 'itemMaster/itemBasket_details', 1),
-(5, 3, 4, 'Vendor ', 'vendor/vendor_details', 1),
-(6, 3, 4, 'Item Creation', 'inventory/masterSetup/itemCreation.php', 1),
-(7, 3, 4, 'Manage Opening Stock', 'inventory/masterSetup/openingStock.php', 1);
+INSERT INTO `userform` (`id`, `moduleID`, `subModuleID`, `formName`, `formUrl`, `status`) VALUES
+(1, 1, 3, 'Item Creation', 'itemBasket/itemBasketView', 1),
+(2, 1, 3, 'Manage Opening Stock', 'openingStock/openingStockView', 1),
+(4, 1, 3, 'Employee Creation', 'employee/', 1),
+(5, 1, 3, 'Vendor Creation', 'vendors/', 1);
 
 -- --------------------------------------------------------
 
@@ -497,12 +487,6 @@ INSERT INTO `vendors` (`id`, `name`, `phone_no`, `address`, `email`, `created_da
 --
 
 --
--- Indexes for table `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
@@ -536,6 +520,12 @@ ALTER TABLE `itembasket`
 -- Indexes for table `material_receive_note`
 --
 ALTER TABLE `material_receive_note`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `module`
+--
+ALTER TABLE `module`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -581,9 +571,9 @@ ALTER TABLE `stock_evaluation`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `subcategory`
+-- Indexes for table `submodule`
 --
-ALTER TABLE `subcategory`
+ALTER TABLE `submodule`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -609,12 +599,6 @@ ALTER TABLE `vendors`
 --
 
 --
--- AUTO_INCREMENT for table `category`
---
-ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
@@ -636,7 +620,7 @@ ALTER TABLE `issue_slips`
 -- AUTO_INCREMENT for table `issue_slip_item_details`
 --
 ALTER TABLE `issue_slip_item_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `itembasket`
@@ -651,10 +635,16 @@ ALTER TABLE `material_receive_note`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `module`
+--
+ALTER TABLE `module`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `mrn_items_details`
 --
 ALTER TABLE `mrn_items_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `openingstock`
@@ -690,19 +680,19 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `stock_evaluation`
 --
 ALTER TABLE `stock_evaluation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `subcategory`
+-- AUTO_INCREMENT for table `submodule`
 --
-ALTER TABLE `subcategory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `submodule`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `userform`
 --
 ALTER TABLE `userform`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -39,7 +39,7 @@ class Userform extends CI_Controller {
             'formName' => $this->input->post('frmName'),
             'formUrl' => $this->input->post('frmUrl'),
             'moduleID' => $this->input->post('catName'),
-            'submoduleID' => $this->input->post('subcatName'),
+            'subModuleID' => $this->input->post('subcatName'),
             'status' => $this->input->post('status')
         );
 

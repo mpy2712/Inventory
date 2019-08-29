@@ -37,6 +37,13 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
                                 </div>
+                                <div class="form-group">
+                                <select class="form-control" name="financialYear" id="financialYear">                                   
+                                    <?php foreach ($records as $r) { ?>
+                                    <option value="<?php echo $r->id; ?>"><?php echo $r->finYear; ?></option>
+                                    <?php } ?>
+                                </select>
+                                </div>
                                 <div class="checkbox">
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me">Remember Me
