@@ -12,3 +12,9 @@ function get_vendor_info($vendor_id){
          return $CI->db->where("id",$vendor_id)->get('vendors')->row();
     }
 }
+
+function getItems(){
+    
+         $CI=&get_instance();    
+         return $CI->db->get("itembasket")->result();  
+}
