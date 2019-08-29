@@ -7,9 +7,7 @@ if ($this->session->userdata('is_authenticated') == FALSE) {
 <html lang="en">
     <head>
         <title>Inventory Management</title>
-
         <meta name="description" content="overview &amp; stats" />
-
         <!-- bootstrap & fontawesome -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>vendor/bootstrap/css/bootstrap.min.css" />
         <link rel="stylesheet" href="<?php echo base_url(); ?>vendor/metisMenu/metisMenu.min.css" />

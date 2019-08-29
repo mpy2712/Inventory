@@ -3,10 +3,15 @@
 
     <?php echo form_open('openingStock/openingStockAdd'); ?>  
 
+    <?php if (validation_errors()) { ?>
+        <div class="alert alert-danger">
+            <?php echo validation_errors(); ?>
+        </div>
+    <?php } ?>
     <div class="form-group">
         <label>Items </label>
         <select class="form-control" name="item" id="item">
-            <option>Select</option>
+            <option value="">Select</option>
             <?php foreach ($records as $r) { ?>
                 <option value="<?php echo $r->id; ?>"><?php echo $r->itemName; ?></option>
             <?php } ?>

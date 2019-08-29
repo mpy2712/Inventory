@@ -60,6 +60,7 @@ class Users extends CI_Controller {
             //Field validation failed.  User redirected to login page
             $this->load->view('users/login');
         } else {
+           
             $sessArray = array();
             //Field validation succeeded.  Validate against database
             $email = $this->input->post('email');
@@ -68,6 +69,7 @@ class Users extends CI_Controller {
 
             $this->user->setEmail($email);
             $this->user->setPassword(MD5($password));
+            $this->user->setFinYearID($finYear);
 
             //query the database
             $result = $this->user->login();
@@ -79,7 +81,7 @@ class Users extends CI_Controller {
                         'name' => $row->name,
                         'email' => $row->email,
                         'is_authenticated' => TRUE,
-                        'finYear'=>$row->finYear
+                        'finYear'=>$row->finYearID
                     );
                     $this->session->set_userdata($sessArray);
                 }
