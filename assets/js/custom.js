@@ -1,5 +1,5 @@
  $(document).ready(function(){
-     //validateMrn();
+     validateMrn();
  });
  
     var baseurl = 'http://localhost/Inventory/';
@@ -215,10 +215,6 @@ let validateMrn = () => $("#mrn_form").validate({
         },
         submitHandler: function (e) {
             //i.show(), r.hide(), 
-
-
-
-
             alert();
         }
     });

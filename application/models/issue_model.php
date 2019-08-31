@@ -14,7 +14,7 @@ class issue_model extends CI_Model {
     
     
     function lists(){
-        return $this->db->select('IS.*,EMP.name as employee_name,U.name as created_by_user_name,( SELECT issue_slip_id from return_slip where issue_slip_id = IS.id ) as has_return_slip')
+        return $this->db->select('IS.*,EMP.name as employee_name,U.name as created_by_user_name,( SELECT issue_slip_id from return_slip where issue_slip_id = IS.id group by issue_slip_id ) as has_return_slip')
                 ->from("issue_slips as IS")
                 ->join("employees as EMP","EMP.id = IS.employee_id")
                 ->join("users as U","U.id = IS.created_by")

@@ -1,8 +1,9 @@
 <style>
     a.disabled {
-  pointer-events: none;
-  cursor: default;
-}
+        pointer-events: none;
+        cursor: default;
+    }
+    
 </style>
 <div class="col-lg-12">
     <h2>Issue Slip Lists</h2>
@@ -50,6 +51,10 @@
                         <?php
                         $i = 0;
                         foreach ($issue_lists as $issue) {
+                            $disabled = false;
+                            if ( $issue->has_return_slip != '' && (int) $issue->has_return_slip > 0 ){
+                                $disabled = true;
+                            }
                             ?>
 
                             <tr class="odd gradeX">
@@ -60,10 +65,7 @@
                                 <td><?php echo $issue->created_by_user_name; ?></td>
                                 <td><?php echo date('Y-m-d', strtotime($issue->created_date)); ?></td>
                                 <?php
-                                $disabled = false;
-                                if ( $issue->has_return_slip != '' && (int) $issue->has_return_slip > 0 ){
-                                    $disabled = true;
-                                } ?>
+                                 ?>
 
                                 <td class="center">
                                     <a  class="<?= $disabled ? 'disabled' : ''  ?>"  href ="<?php echo base_url('/issue/edit/' . $issue->id) ?> " title='Edit'><i class="fa fa-pencil" aria-hidden="true"></i></a>

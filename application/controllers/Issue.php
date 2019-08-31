@@ -15,6 +15,8 @@ class Issue extends CI_Controller {
     }
     function index(){
         $data['issue_lists'] = $this->issue->lists();
+        
+        
         $this->template->load('default_layout', 'issues/index',$data);
     }
     
