@@ -1,5 +1,5 @@
  $(document).ready(function(){
-     validateMrn();
+     //validateMrn();
  });
  
     var baseurl = 'http://localhost/Inventory/';
@@ -41,14 +41,27 @@
 //                        "<td><i class='fa fa-trash-o' style='cursor:pointer' onclick='deleteItemRow(this)' ></i>&nbsp;&nbsp;&nbsp;<i style='cursor:pointer' class='fa fa-plus' aria-hidden='true' style='corsor:pointer' onclick='addItemRow(this)' ></i></td>"
 //                    "</tr>";
 //                        item_id_incr ++;
-            var row = "<tr>" + 
+//            var row = "<tr>" + 
+//                        "<td>"+sno+"</td>"+
+//                        "<td>"+item_name + "</td>" + 
+//                        "<td>"+item_code + "</td>"+
+//                        "<td><input type='text' class='form-control' name='batch[]' value='' placeholder='Batch No' id='batch_no' autocomplete='off'/> </td>"+
+//                        "<td><input type='text' class='form-control' name='req_qty[]' id='req_qty' placeholder='Req Qty' autocomplete='off'/> </td>"+
+//                        "<td><input type='text' class='form-control' name='rec_qty[]' id='rec_qty_"+item_id_incr+"' placeholder='Rec Qty' autocomplete='off' /> "+
+//                        "<input type='hidden' name='item[]'  id='item_id[]'  value='"+item_id+"' />"+
+//                        "</td>"+
+//                        "<td><i class='fa fa-trash-o' style='cursor:pointer' onclick='deleteItemRow(this)' ></i>&nbsp;&nbsp;&nbsp;<i style='cursor:pointer' class='fa fa-plus' aria-hidden='true' style='corsor:pointer' onclick='addItemRow(this)' ></i></td>"
+//                    "</tr>";
+//                        item_id_incr ++;
+
+        var row = "<tr>" + 
                         "<td>"+sno+"</td>"+
                         "<td>"+item_name + "</td>" + 
                         "<td>"+item_code + "</td>"+
-                        "<td><input type='text' class='form-control' name='batch[]' value='' placeholder='Batch No' id='batch_no' autocomplete='off'/> </td>"+
-                        "<td><input type='text' class='form-control' name='req_qty[]' id='req_qty' placeholder='Req Qty' autocomplete='off'/> </td>"+
-                        "<td><input type='text' class='form-control' name='rec_qty[]' id='rec_qty_"+item_id_incr+"' placeholder='Rec Qty' autocomplete='off' /> "+
-                        "<input type='hidden' name='item[]'  id='item_id[]'  value='"+item_id+"' />"+
+                        "<td><input type='text' class='form-control' name='item[batch_no][]' value='' placeholder='Batch No' id='batch_no' autocomplete='off'/> </td>"+
+                        "<td><input type='text' class='form-control' name='item[req_qty][]' id='req_qty' placeholder='Item Qty' autocomplete='off'/> </td>"+
+                        "<td><input type='text' class='form-control' name='item[rec_qty][]' id='rec_qty' placeholder='Rec Qty' autocomplete='off' /> "+
+                        "<input type='hidden' name='item[item_id][]'  id='item_id[]'  value='"+item_id+"' />"+
                         "</td>"+
                         "<td><i class='fa fa-trash-o' style='cursor:pointer' onclick='deleteItemRow(this)' ></i>&nbsp;&nbsp;&nbsp;<i style='cursor:pointer' class='fa fa-plus' aria-hidden='true' style='corsor:pointer' onclick='addItemRow(this)' ></i></td>"
                     "</tr>";
@@ -66,6 +79,15 @@
     
     function addItemRow(object){
         var parentRow = jQuery(object).parent().parent("tr");
+//        var changedRow = parentRow;
+//        for( let index = 0 ; index < 3; index++  ){
+//            changedRow.children()[index].innerHTML = '';
+//            //console.log(parentRow.children()[index]);
+//        }
+//        
+//        console.log(changedRow);
+        
+        
         parentRow.clone().insertAfter(parentRow);
         reCreateSno();
     }
@@ -76,14 +98,6 @@
         reCreateSno();
     }
 
-//function validateMrn(){
-//    
-//    var mrn_date = jQuery('#mrn_date').val();
-//    var vendor_name = jQuery('#vendor_name').val();
-//    console.log({mrn_date,vendor_name});
-//    return false;
-//    
-//}
 function select_employee(emp_id,emp_name){
     jQuery("#emp_name").val(emp_name);
     jQuery("#employee_id").val(emp_id);
@@ -94,11 +108,11 @@ function select_issue_item(item_id,item_name,item_code,batch_no){
     var length = parseInt(jQuery("#item_details tr").length) ;
     item_id_incr = length > 1 ? length : length;  
     var row = "<tr>" + 
-                    "<td>1</td>"+
+                    "<td></td>"+
                     "<td>"+item_name + "</td>" + 
                     "<td>"+item_code + "</td>"+
-                    "<td><input type='text'  class='form-control' name='item["+item_id_incr+"][batch_no]' value="+batch_no+" id='batch_no'/> </td>"+
-                    "<td><input type='text'  class='form-control' name='item["+item_id_incr+"][issue_qty]' id='item_issue_qty'/> </td>"+
+                    "<td><input type='text'  class='form-control' name='item["+item_id_incr+"][batch_no]' placeholder='Batch No' id='batch_no'/> </td>"+
+                    "<td><input type='number'  class='form-control' name='item["+item_id_incr+"][issue_qty]' placeholder='Issue Qty'  id='item_issue_qty'/> </td>"+
                     "<td><input type='date' class='form-control' name='item["+item_id_incr+"][issue_date]' id='item_rec_qty'/> "+
                     "<input type='hidden' name='item["+item_id_incr+"][item_id]'  value='"+item_id+"' />"+
                     "</td>"+
@@ -107,7 +121,8 @@ function select_issue_item(item_id,item_name,item_code,batch_no){
                     item_id_incr ++;
     
     jQuery("#item_details").append(row);
-    
+    reCreateSno();
+
 }
 function get_issue_items(issue_id){
     if ( parseInt(issue_id) > 0 ){
@@ -139,12 +154,17 @@ let validateMrn = () => $("#mrn_form").validate({
             'rec_qty[]': {
                 required: function (element) {
                     var a = 0;
-                    $('input[id^="rec_qty_"]').each(function (i) {
-                            $(this).val() != '' ? ++a:0;
+                    
+                    $('input[name^="rec_qty"]').each(function (i) {
+                        $(this).val() != '' ? ++a:0;
                     });
+                    console.log(a != $('input[name^="rec_qty[]"]').length);
 //                    console.log($('input[name^="rec_qty[]"]').length + " >>> "+a);
-                    console.log(a < $('input[name^="rec_qty[]"]').length);
-                    return a < $('input[name^="rec_qty[]"]').length;
+                   // console.log(a == $('input[name^="rec_qty[]"]').length);
+                    if ( a != $('input[name^="rec_qty[]"]').length )
+                        return true;
+                    return false;
+                    return a == $('input[name^="rec_qty[]"]').length;
                     //return $('input[name^="rec_qty[]"]').length != a;
                         //return $("#rec_qty").val() != '0';
                 }
