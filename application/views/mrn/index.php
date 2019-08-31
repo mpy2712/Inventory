@@ -3,7 +3,8 @@
         <h2>MRN Lists</h2>
         <div class="panel panel-default">
             <div class="panel-heading">
-                 <p><a href="<?php echo base_url() . 'mrn/create' ?>">Create MRN</a></p>
+                 <a href="<?php echo base_url() . 'mrn/create' ?>"><button class="btn btn-primary">Create MRN</button></a>
+                 
            </div>
             <div class="panel-body">
             <?php if (validation_errors()) : ?>

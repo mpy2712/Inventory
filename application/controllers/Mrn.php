@@ -21,7 +21,6 @@ class Mrn extends CI_Controller {
     function create(){
         
         if ( $this->input->post() ){
-            
             $this->load->library('form_validation');
 
             $this->form_validation->set_rules('mrn_no', 'MRN No', 'trim|required');
@@ -47,11 +46,18 @@ class Mrn extends CI_Controller {
             {
                 $item_details = $this->input->post('item');
                 if ( !empty($item_details) ){
-                    foreach ($item_details as $key=>$val){
-                        $insert_item_details['item_id'] = $val['item_id'];
-                        $insert_item_details['required_qty'] = $val['req_qty'];
-                        $insert_item_details['received_qty'] = $val['rec_qty'];
-                        $insert_item_details['batch_no'] = $val['batch_no'];
+                    foreach ($item_details['batch_no'] as $key=>$val){
+                        
+                        $item_id  = $item_details['item_id'][$key];
+                        $req_qty  = $item_details['req_qty'][$key];
+                        $rec_qty  = $item_details['rec_qty'][$key];
+                        $item_id  = $item_details['item_id'][$key];
+                        $batch_no = $val;
+                        
+                        $insert_item_details['item_id'] = $item_id;
+                        $insert_item_details['required_qty'] = $req_qty;
+                        $insert_item_details['received_qty'] = $rec_qty;
+                        $insert_item_details['batch_no'] = $batch_no;
                         $insert_item_details['mrn_id'] = $mrn_id;
                         $insert_item_details['created_date'] = date("Y-m-d h:i:s");
                         
@@ -60,10 +66,10 @@ class Mrn extends CI_Controller {
                         if ( $transaction_detail_id ){
                             // Stock Evaluation
                         
-                            $stock['item_id'] = $val['item_id'];
+                            $stock['item_id'] = $item_id;
                             $stock['transaction_id'] = $mrn_id;
                             $stock['transaction_detail_id'] = $transaction_detail_id;
-                            $stock['stock_in'] = $val['rec_qty'];
+                            $stock['stock_in'] = $rec_qty;
                             $stock['transaction_type'] = 'mrn';
                             $stock['created_date'] = strtotime(date("Y-m-d h:i:s"));
                             $this->common_model->insert_record('stock_evaluation',$stock);
