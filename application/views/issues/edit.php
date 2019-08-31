@@ -58,7 +58,7 @@
                         <td><?= ++$sn ?></td>
                         <td><?= $item->itemName ?></td>
                         <td><?= $item->itemCode ?></td>
-                        <td>   <input type="text" class="form-control" name="item[<?php echo $index ?>][batch_no]" value="<?= $item->batch_no ?>" readonly=""/> </td>
+                        <td>   <input type="text" class="form-control" name="item[<?php echo $index ?>][batch_no]" value="<?= $item->batch_no ?>" /> </td>
                         <td>
                             <input type="text" class="form-control" name="item[<?php echo $index ?>][issue_qty]" value="<?= $item->issue_qty ?>"/> 
                             <input type="hidden" class="form-control" name="item[<?php echo $index ?>][item_id]" value="<?= $item->item_id ?>"/> 
@@ -66,7 +66,7 @@
                         <td><input type="date" class="form-control" name="item[<?php echo $index ?>][issue_date]" value="<?= date("Y-m-d",$item->issue_date) ?>"/> </td>
                         <td><i class='fa fa-trash-o' style='cursor:pointer' onclick='deleteItemRow(this)' ></i></td>
                     </tr>
-                    <?php endforeach;?>
+                    <?php $index++; endforeach;?>
                     <?php else:?>
                     <tr>
                         <td colspan="7">No Item Founds</td>
