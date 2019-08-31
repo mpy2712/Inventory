@@ -24,6 +24,9 @@ class Users_model extends CI_Model {
     private $_email;
     private $_password;
     private $_status;
+    private $_finYear;
+    private $_finID;
+    Private $_finPreFix;
 
     public function setUserID($userID) {
         $this->_userID = $userID;
@@ -37,6 +40,10 @@ class Users_model extends CI_Model {
         $this->_password = $password;
     }
 
+    public function setFinYearID($finYear) {
+        $this->_finID = $finYear;
+    }
+
     public function getUserInfo() {
         $this->db->select(array('u.user_id', 'u.name', 'u.email'));
         $this->db->from('users as u');
@@ -45,13 +52,15 @@ class Users_model extends CI_Model {
         return $query->row_array();
     }
 
-    function login() {
-        $this->db->select('user_id, name, email,id');
+    function login() {       
+        $this->db->select('user_id, name, email,id,finYearID');
         $this->db->from('users');
         $this->db->where('user_id', $this->_email);
         $this->db->where('password', $this->_password);
+        $this->db->where('finYearID', $this->_finID);
         $this->db->limit(1);
         $query = $this->db->get();
+        //print_r($this->db->last_query());
         
         if ($query->num_rows() == 1) {
             return $query->result();
