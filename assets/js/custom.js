@@ -1,5 +1,5 @@
  $(document).ready(function(){
-     validateMrn();
+     //validateMrn();
  });
  
     var baseurl = 'http://localhost/Inventory/';
