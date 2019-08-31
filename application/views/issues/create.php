@@ -39,17 +39,13 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <td>S.No</td>
-                        <td>Item Name</td>
-                        <td>Item Code</td>
-                        <td>Batch No</td>
-                        <td>Issue. Qty</td>
-                        <td>Issue Date</td>
-                        <td>Action</td>
-                        
-                  
-                    </tr>
-                    
+                        <th>S.No</th>
+                        <th style="width:235">Item Name</th>
+                        <th style="width:255">Item Code</th>
+                        <th>Batch No</th>
+                        <th>Issue. Qty</th>
+                        <th>Issue Date</th>
+                        <th>Action</th>
                 </thead>
                 <tbody id="item_details">
                     

@@ -45,15 +45,16 @@
         <label><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#item_lists">Pick Items</button></label>
             <table class="table table-bordered">
                 <thead>
-                    <tr>
-                        <td>S.No</td>
-                        <td>Item Name</td>
-                        <td>Item Code</td>
-                        <td>Batch No</td>
-                        <td>Req. Qty</td>
-                        <td>Rec. Qty</td>
-                        <td>Action</td>
+                        <tr>
+                        <th>S.No</th>
+                        <th style="width:235">Item Name</th>
+                        <th style="width:255">Item Code</th>
+                        <th>Batch No</th>
+                        <th>Req. Qty</th>
+                        <th>Rec. Qty</th>
+                        <th>Action</th>
                         
+                  
                         
                   
                     </tr>
