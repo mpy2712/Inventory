@@ -86,6 +86,7 @@ class OpeningStock extends CI_Controller {
             $this->common_model->insert_record('stock_evaluation',$stock);
         }
         $lastSeq['sequenceNumber']=$formattedNumber;
+        $conditions['finYearID']=$_SESSION['finYear'];
         $conditions['transactionType']='OP';
         $this->common_model->update_record('sequencenobytransactiontype',$lastSeq,$conditions);
        

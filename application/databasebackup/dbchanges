@@ -16,7 +16,7 @@ ALTER TABLE `return_item_details` CHANGE `return_date` `return_rate` INT(11) NOT
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2019 at 12:53 PM
+-- Generation Time: Aug 29, 2019 at 07:42 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -70,16 +70,17 @@ INSERT INTO `employees` (`id`, `name`, `phone_no`, `email`, `address`, `created_
 CREATE TABLE `financialyear` (
   `id` int(11) NOT NULL,
   `finYear` varchar(255) NOT NULL,
-  `status` varchar(10) NOT NULL DEFAULT 'Active'
+  `status` varchar(10) NOT NULL DEFAULT 'Active',
+  `preFix` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `financialyear`
 --
 
-INSERT INTO `financialyear` (`id`, `finYear`, `status`) VALUES
-(1, '2018-2019', 'InActive'),
-(2, '2019-2020', 'Active');
+INSERT INTO `financialyear` (`id`, `finYear`, `status`, `preFix`) VALUES
+(1, '2018-2019', 'InActive', '18'),
+(2, '2019-2020', 'Active', '19');
 
 -- --------------------------------------------------------
 
@@ -247,17 +248,18 @@ CREATE TABLE `openingstock` (
   `id` int(11) NOT NULL,
   `itemID` int(11) NOT NULL,
   `qty` float NOT NULL,
-  `openingDate` int(20) NOT NULL
+  `openingDate` int(20) NOT NULL,
+  `openingNumber` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `openingstock`
 --
 
-INSERT INTO `openingstock` (`id`, `itemID`, `qty`, `openingDate`) VALUES
-(1, 1, 40, 1566424800),
-(2, 2, 50, 1566424800),
-(3, 3, 50, 1565820000);
+INSERT INTO `openingstock` (`id`, `itemID`, `qty`, `openingDate`, `openingNumber`) VALUES
+(1, 1, 450, 1567029600, 'OP/19/0001'),
+(5, 2, 250, 1567116000, 'OP/19/0002'),
+(7, 3, 450, 1566511200, 'OP/19/0003');
 
 -- --------------------------------------------------------
 
@@ -368,6 +370,26 @@ CREATE TABLE `role_details` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sequencenobytransactiontype`
+--
+
+CREATE TABLE `sequencenobytransactiontype` (
+  `id` int(11) NOT NULL,
+  `transactionType` varchar(20) NOT NULL,
+  `finYearID` int(11) NOT NULL,
+  `sequenceNumber` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sequencenobytransactiontype`
+--
+
+INSERT INTO `sequencenobytransactiontype` (`id`, `transactionType`, `finYearID`, `sequenceNumber`) VALUES
+(1, 'OP', 2, '0003');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `stock_evaluation`
 --
 
@@ -378,7 +400,7 @@ CREATE TABLE `stock_evaluation` (
   `transaction_detail_id` int(11) NOT NULL,
   `stock_in` int(11) NOT NULL,
   `stock_out` int(11) NOT NULL,
-  `transaction_type` enum('mrn','issue','return') NOT NULL,
+  `transaction_type` enum('mrn','issue','return','op') NOT NULL,
   `created_date` int(11) NOT NULL,
   `updated_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -395,7 +417,10 @@ INSERT INTO `stock_evaluation` (`id`, `item_id`, `transaction_id`, `transaction_
 (13, 10, 1, 9, 4000, 0, 'mrn', 1567072385, '2019-08-29 15:23:05'),
 (14, 13, 1, 10, 2500, 0, 'mrn', 1567072385, '2019-08-29 15:23:05'),
 (16, 13, 1, 6, 0, 50, 'issue', 1567072552, '2019-08-29 15:25:52'),
-(17, 1, 1, 7, 0, 200, 'issue', 1567072552, '2019-08-29 15:25:52');
+(17, 1, 1, 7, 0, 200, 'issue', 1567072552, '2019-08-29 15:25:52'),
+(18, 1, 1, 1, 450, 0, 'op', 1567056495, '2019-08-29 22:58:15'),
+(20, 2, 1, 1, 250, 0, 'op', 1567056803, '2019-08-29 23:03:23'),
+(21, 3, 1, 1, 450, 0, 'op', 1567057179, '2019-08-29 23:09:39');
 
 -- --------------------------------------------------------
 
@@ -443,7 +468,10 @@ INSERT INTO `userform` (`id`, `moduleID`, `subModuleID`, `formName`, `formUrl`, 
 (1, 1, 3, 'Item Creation', 'itemBasket/itemBasketView', 1),
 (2, 1, 3, 'Manage Opening Stock', 'openingStock/openingStockView', 1),
 (4, 1, 3, 'Employee Creation', 'employee/', 1),
-(5, 1, 3, 'Vendor Creation', 'vendors/', 1);
+(5, 1, 3, 'Vendor Creation', 'vendors/', 1),
+(6, 1, 1, 'Matrial Receipt Note', 'mrn', 1),
+(7, 1, 1, 'Issue Slip', 'issue', 1),
+(8, 1, 1, 'Return Slip', 'return_slip', 1);
 
 -- --------------------------------------------------------
 
@@ -469,7 +497,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_id`, `password`, `locked`, `userName`, `name`, `email`, `dob`, `isAdmin`, `finYearID`) VALUES
-(1, 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', '0', 'manoj', 'Manoj pandey', 'mpy2712@gmail.com', '1981-12-27', 0, 1);
+(1, 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', '0', 'manoj', 'Manoj pandey', 'mpy2712@gmail.com', '1981-12-27', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -578,6 +606,12 @@ ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `sequencenobytransactiontype`
+--
+ALTER TABLE `sequencenobytransactiontype`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `stock_evaluation`
 --
 ALTER TABLE `stock_evaluation`
@@ -663,7 +697,7 @@ ALTER TABLE `mrn_items_details`
 -- AUTO_INCREMENT for table `openingstock`
 --
 ALTER TABLE `openingstock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `randaomhash`
@@ -690,10 +724,16 @@ ALTER TABLE `role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `sequencenobytransactiontype`
+--
+ALTER TABLE `sequencenobytransactiontype`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `stock_evaluation`
 --
 ALTER TABLE `stock_evaluation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `submodule`
@@ -705,7 +745,7 @@ ALTER TABLE `submodule`
 -- AUTO_INCREMENT for table `userform`
 --
 ALTER TABLE `userform`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
