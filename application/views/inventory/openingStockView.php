@@ -11,7 +11,8 @@
                         <thead>
                             <tr>
                        
-                            <th>Sr. No</th>                            
+                            <th>Sr. No</th>   
+                            <th>OP Number</th>                         
                             <th>Item Name</th>
                             <th>Item Code</th>
                             <th>Quantity</th>
@@ -30,6 +31,7 @@
 
                             <tr class="odd gradeX">
                                 <td><?php echo $i++; ?></td>
+                                <td><?php echo $r->openingNumber; ?></td>
                                 <td><?php echo $r->itemName; ?></td>
                                 <td><?php echo $r->ItemCode; ?></td>
                                 <td><?php echo $r->qty; ?></td>

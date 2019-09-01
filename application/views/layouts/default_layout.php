@@ -1,4 +1,4 @@
-d<?php
+<?php
 if ($this->session->userdata('is_authenticated') == FALSE) {
     redirect('users/login');
 }
