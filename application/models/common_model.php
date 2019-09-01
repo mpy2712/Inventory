@@ -41,7 +41,7 @@ class Common_model extends CI_Model {
         }
     }
     
-    function get_all_records($table_name,$condition=[]){
+    function get_all_records($table_name,$conditions=[]){
         if ( !empty($conditions) ){
             foreach($conditions as $key=>$val){
                 $this->db->where($key,$val);

@@ -9,11 +9,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class return_model extends CI_Model {
     function __construct() { 
          parent::__construct(); 
+         $this->load->model('common_model','common');
+         
     }
     
     
     
     function lists(){
+        
         return $this->db->select('RS.*,EMP.name as employee_name,U.name as created_by_user_name,IS.slip_no as issue_slip_no')
                 ->from("return_slip as RS")
                 ->join("employees as EMP","EMP.id = RS.employee_id")
@@ -24,6 +27,19 @@ class return_model extends CI_Model {
     }
     
      function get_lssue_item_details($issue_slip_id){
+        $return_data = $this->common->get_all_records("return_slip",['issue_slip_id'=>$issue_slip_id]);
+        if ( !empty($return_data) ){
+            $return_id = array();
+            foreach($return_data as $key=>$val){
+                $return_id[] = $val->id;
+            }
+            $return_id = implode(",", $return_id);
+            return $this->db->select("IS.*,IT.itemName,IT.itemCode,(SELECT SUM(return_qty) from return_item_details where item_id = IS.item_id and return_slip_id in (".$return_id." )  ) as total_return_qty ")
+                 ->from("issue_slip_item_details as IS")
+                 ->join("itembasket as IT","IT.id = IS.item_id")
+                 ->where("issue_id",$issue_slip_id)
+                 ->get()->result();
+        }
         return $this->db->select("IS.*,IT.itemName,IT.itemCode")
                  ->from("issue_slip_item_details as IS")
                  ->join("itembasket as IT","IT.id = IS.item_id")

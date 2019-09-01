@@ -15,39 +15,46 @@
     
     <?php echo form_open('mrn/update/'.$mrn->id); ?>  
     
-    <div class="form-group">
-    <label>MRN NO</label>
+    
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="mrn_no">MRN NO</label>
+        <div class="col-sm-6">
+            
     <input type="text" class="form-control" name="mrn_no" id="mrn_no"  value="<?php echo $mrn->mrn_no; ?>"   readonly="readonly">
     <input type="hidden" name="vendor_id" id="vendor_id" value="<?php echo $mrn->vendor_id ?>"/>
-    </div>
-    <div class="form-group">
-    <label>MRN Date</label>
-    <input type="date" id="mrn_date_picke" class="form-control datepicker" value="<?php echo date("Y-m-d",$mrn->mrn_date) ?>" name="mrn_date" id="mrn_date" />
+        </div>
     </div>
     
-    <div class="form-group">
-        <label>
-           
-        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Pick Vendor</button>
-        </label>
+   <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="mrn_date">MRN Date</label>
+        <div class="col-sm-6">
+    <input type="date" id="mrn_date_picke" class="form-control datepicker" value="<?php echo date("Y-m-d",$mrn->mrn_date) ?>" name="mrn_date" id="mrn_date" />
+        </div>
+    </div> 
+    
+     <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="pick_vendor"><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Pick Vendor</button></label>
+        <div class="col-sm-6">
         <?php $vendor_info = get_vendor_info($mrn->vendor_id); ?>
         <input type="text" class="form-control" name="vendor_name" id="vendor_name" value="<?php echo $vendor_info ? $vendor_info->name : ''  ?>" readonly="readonly" placeholder="Enter vendor name" >
-
+</div>
     </div>
+    
     
     <div class="form-group">
         <label><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#item_lists">Pick Items</button></label>
             <table class="table table-bordered">
                 <thead>
-                    <tr>
-                        <td>S.No</td>
-                        <td>Item Name</td>
-                        <td>Item Code</td>
-                        <td>Batch No</td>
-                        <td>Req. Qty</td>
-                        <td>Rec. Qty</td>
-                        <td>Action</td>
+                        <tr>
+                        <th>S.No</th>
+                        <th style="width:235">Item Name</th>
+                        <th style="width:255">Item Code</th>
+                        <th>Batch No</th>
+                        <th>Req. Qty</th>
+                        <th>Rec. Qty</th>
+                        <th>Action</th>
                         
+                  
                         
                   
                     </tr>
@@ -58,13 +65,13 @@
                         <?php $i=0;$index = 0;foreach($item_details as $mrn_item):?>
                             <tr>
                                 <td><?= ++$i; ?>
-                                    <input type="hidden" name="item[<?php echo $index; ?>][item_id]" value="<?php echo $mrn_item->item_id?>"/>
+                                    <input type="hidden" name="item[item_id][]" value="<?php echo $mrn_item->item_id?>"/>
                                 </td>
                                 <td><?= $mrn_item->itemName ?></td>
                                 <td><?= $mrn_item->itemCode ?></td>
-                                <td><input type="text" name="item[<?php echo $index; ?>][batch_no]" value="<?= $mrn_item->batch_no ?>"/> </td>
-                                <td><input type="text" name="item[<?php echo $index; ?>][req_qty]" value="<?= $mrn_item->required_qty ?>"/> </td>
-                                <td><input type="text" name="item[<?php echo $index; ?>][rec_qty]" value="<?= $mrn_item->received_qty ?>"/> </td>
+                                <td><input type="text" class="form-control" name="item[batch_no][]" value="<?= $mrn_item->batch_no ?>"/> </td>
+                                <td><input type="text" class="form-control" name="item[req_qty][]" value="<?= $mrn_item->required_qty ?>"/> </td>
+                                <td><input type="text" class="form-control" name="item[rec_qty][]" value="<?= $mrn_item->received_qty ?>"/> </td>
                                 <td><i class='fa fa-trash-o' style='cursor:pointer' onclick='deleteItemRow(this)' ></i></td>
                                 
                                 

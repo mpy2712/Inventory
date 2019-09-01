@@ -1,7 +1,7 @@
 <div class="col-lg-12">
     <h1 class="page-header">Opening Stock </h1>
 
-    <?php echo form_open('itembasket/itemBasketAdd'); ?>  
+    <?php echo form_open('itembasket/itemBasketAdd',['id'=>'item_master']); ?>  
 
     <div class="form-group">
     <label>Item Name</label>

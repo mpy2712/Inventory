@@ -3,7 +3,7 @@
         <h2>Return Slip Lists</h2>
         <div class="panel panel-default">
             <div class="panel-heading">
-                 <p><a href="<?php echo base_url() . 'return_slip/create' ?>">Create Return Slip</a></p>
+                <p><a class="btn btn-primary" style="text-decoration: none" href="<?php echo base_url() . 'return_slip/create' ?>">Create Return Slip</a></p>
            </div>
             <div class="panel-body">
             <?php if (validation_errors()) : ?>

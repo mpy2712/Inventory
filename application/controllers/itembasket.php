@@ -38,7 +38,7 @@ class ItemBasket extends CI_Controller {
     }
 
     public function itemBasketAdd() {
-        
+        retrun;
         $this->load->model('ItemBasket_model');
         $hash=$this->ItemBasket_model->getNewRandHash();
         $data = array(

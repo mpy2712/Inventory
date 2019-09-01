@@ -53,8 +53,17 @@ public function insertHash($data) {
  }
  
  function getItemLists(){
-     return $this->db->select("itembasket.*,( SELECT SUM(stock_in)- SUM(stock_out) from stock_evaluation where item_id = itembasket.id )as stock")
+     $data = $this->db->select("itembasket.*,( SELECT SUM(stock_in)- SUM(stock_out) from stock_evaluation where item_id = itembasket.id )as stock")
              ->get("itembasket")->result();
+     
+     if ( !empty($data) ) {
+         foreach($data as $key=>$val){
+             if ( $val->stock == '' || (int) $val->stock <=0 ){
+                 unset($data[$key]);
+             }
+         }
+     }
+     return $data;
  }
  
 }

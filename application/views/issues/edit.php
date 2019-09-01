@@ -39,17 +39,13 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <td>S.No</td>
-                        <td>Item Name</td>
-                        <td>Item Code</td>
-                        <td>Batch No</td>
-                        <td>Issue. Qty</td>
-                        <td>Issue Date</td>
-                        <td>Action</td>
-                        
-                  
-                    </tr>
-                    
+                        <th>S.No</th>
+                        <th style="width:235">Item Name</th>
+                        <th style="width:255">Item Code</th>
+                        <th>Batch No</th>
+                        <th>Issue. Qty</th>
+                        <th>Issue Date</th>
+                        <th>Action</th>
                 </thead>
                 <tbody id="item_details">
                     <?php if(!empty($item_details)): ?>
@@ -58,7 +54,7 @@
                         <td><?= ++$sn ?></td>
                         <td><?= $item->itemName ?></td>
                         <td><?= $item->itemCode ?></td>
-                        <td>   <input type="text" class="form-control" name="item[<?php echo $index ?>][batch_no]" value="<?= $item->batch_no ?>" readonly=""/> </td>
+                        <td>   <input type="text" class="form-control" name="item[<?php echo $index ?>][batch_no]" value="<?= $item->batch_no ?>" /> </td>
                         <td>
                             <input type="text" class="form-control" name="item[<?php echo $index ?>][issue_qty]" value="<?= $item->issue_qty ?>"/> 
                             <input type="hidden" class="form-control" name="item[<?php echo $index ?>][item_id]" value="<?= $item->item_id ?>"/> 
@@ -66,7 +62,7 @@
                         <td><input type="date" class="form-control" name="item[<?php echo $index ?>][issue_date]" value="<?= date("Y-m-d",$item->issue_date) ?>"/> </td>
                         <td><i class='fa fa-trash-o' style='cursor:pointer' onclick='deleteItemRow(this)' ></i></td>
                     </tr>
-                    <?php endforeach;?>
+                    <?php $index++; endforeach;?>
                     <?php else:?>
                     <tr>
                         <td colspan="7">No Item Founds</td>

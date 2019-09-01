@@ -19,7 +19,15 @@ if ($this->session->userdata('is_authenticated') == FALSE) {
         <link rel="stylesheet" href="<?php echo base_url(); ?>vendor/font-awesome/css/font-awesome.min.css" />
         <link rel="stylesheet" href="<?php echo base_url(); ?>vendor/datatables/css/jquery.dataTables.min.css" />
  
-        
+        <style>
+            .invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+        </style>
         <!-- page specific plugin styles -->
     </head>
     <div id="wrapper">
@@ -176,6 +184,7 @@ if ($this->session->userdata('is_authenticated') == FALSE) {
 <!-- basic scripts -->
 
 <script type="text/javascript" src="<?php echo base_url(); ?>vendor/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
 <script src="<?php echo base_url(); ?>vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>vendor/datatables/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
@@ -187,7 +196,7 @@ if ($this->session->userdata('is_authenticated') == FALSE) {
 <!-- <script src="<?php echo base_url(); ?>data/morris-data.js"></script> -->
 <script src="<?php echo base_url(); ?>dist/js/sb-admin-2.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
-<!--<script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>-->
+
 <!--<script src="<?php echo base_url(); ?>assets/js/app.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.slimscroll.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.slimscroll.min.js"></script>-->

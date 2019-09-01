@@ -48,16 +48,15 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <td>S.No</td>
-                        <td>Item Name</td>
-                        <td>Item Code</td>
-                        <td>Batch No</td>
-                        <td>Issue. Qty</td>
-                        <td>Return. Qty</td>
+                        <th>S.No</th>
+                        <th style="width:235">Item Name</th>
+                        <th style="width:255">Item Code</th>
+                        <th style="width: 100px">Batch No</th>
+                        <th>Issue. Qty</th>
+                        <th>Return. Qty</th>
+                        <th>Rate</th>
                         
-                        <td>Date</td>
-                        <td>Action</td>
-                        
+                        <th>Action</th>
                   
                     </tr>
                     

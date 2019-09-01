@@ -7,10 +7,7 @@
             <file>file:/C:/xampp/htdocs/Inventory/application/controllers/Return_Slip.php</file>
             <file>file:/C:/xampp/htdocs/Inventory/application/models/common_model.php</file>
             <file>file:/C:/xampp/htdocs/Inventory/application/models/return_model.php</file>
-            <file>file:/C:/xampp/htdocs/Inventory/application/views/returns/index.php</file>
-            <file>file:/C:/xampp/htdocs/Inventory/application/config/routes.php</file>
-            <file>file:/C:/xampp/htdocs/Inventory/assets/js/custom.js</file>
-            <file>file:/C:/xampp/htdocs/Inventory/application/views/layouts/default_layout.php</file>
+            <file>file:/C:/xampp/htdocs/Inventory/application/views/returns/edit.php</file>
         </group>
     </open-files>
 </project-private>

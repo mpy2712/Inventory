@@ -43,7 +43,7 @@ class Return_Slip extends CI_Controller {
             $this->form_validation->set_rules('issue_no', 'Issue Number', 'trim|required');
             
             if ($this->form_validation->run() == FALSE) {
-                return $this->createIssueView();
+                return $this->createReturnView();
             }
             
             $data['return_no'] = $this->input->post('return_no');
@@ -63,7 +63,7 @@ class Return_Slip extends CI_Controller {
                         $insert_item_details['issue_qty'] = $val['issue_qty'];
                         $insert_item_details['return_qty'] = $val['return_qty'];
                         
-                        $insert_item_details['return_date'] = strtotime(date("Y-m-d",strtotime($val['return_date']))) ;
+                        $insert_item_details['return_rate'] = $val['return_rate'] ;
                         
                         $insert_item_details['return_slip_id'] = $return_id;
                         $insert_item_details['created_date'] = date("Y-m-d h:i:s");
@@ -100,19 +100,25 @@ class Return_Slip extends CI_Controller {
         if ( $this->input->post("issue_id") ){
             $issue_id = $this->input->post("issue_id");
             $issue_items = $this->return->get_lssue_item_details($issue_id);
+            
+            
             $sno = 1;
             if ( !empty($issue_items ) ){
                 $row = '';
                 
                 foreach($issue_items as $item){
+                    if ( $item->total_return_qty == $item->issue_qty )
+                        continue;
+                    
+                    $item->balance_qty = $item->issue_qty - $item->total_return_qty;
                  $row .="<tr>"
                         . "<td>$sno</td>"
                         . "<td>$item->itemName</td>"
                         . "<td>$item->itemCode</td>"
                         . "<td>$item->batch_no</td>"
-                        . "<td><input type='text' class='form-control' name='item[$sno][issue_qty]' value='$item->issue_qty' readonly/> </td>"
-                        . "<td><input type='text' class='form-control' name='item[$sno][return_qty]'/> <input type='hidden' class='form-control' name='item[$sno][item_id]' value='$item->item_id'/> </td>"
-                        . "<td><input type='date' class='form-control' name='item[$sno][return_date]' /></td>"
+                        . "<td><input type='number' class='form-control' name='item[$sno][issue_qty]' value='$item->balance_qty' readonly/> </td>"
+                        . "<td><input type='number' class='form-control' name='item[$sno][return_qty]'/> <input type='hidden' class='form-control' name='item[$sno][item_id]' value='$item->item_id'/> </td>"
+                        . "<td><input type='number' class='form-control' name='item[$sno][return_rate]' /></td>"
                         . "<td><i class='fa fa-trash-o' style='cursor:pointer' onclick='deleteItemRow(this)' ></i></td>"
                         . "</tr>";
                  $sno++;

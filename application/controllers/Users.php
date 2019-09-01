@@ -81,6 +81,8 @@ class Users extends CI_Controller {
                         'name' => $row->name,
                         'email' => $row->email,
                         'is_authenticated' => TRUE,
+                        'finYear'=>$row->finYear,
+                        'user_row_id'=>$row->id,
                         'finYear'=>$row->finYearID
                     );
                     $this->session->set_userdata($sessArray);

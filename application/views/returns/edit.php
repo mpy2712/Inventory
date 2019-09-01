@@ -48,15 +48,15 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <td>S.No</td>
-                        <td>Item Name</td>
-                        <td>Item Code</td>
-                        <td>Batch No</td>
-                        <td>Issue. Qty</td>
-                        <td>Return. Qty</td>
+                        <th>S.No</th>
+                        <th style="width:200">Item Name</th>
+                        <th style="width:200">Item Code</th>
+                        <th style="width: 100px">Batch No</th>
+                        <th>Issue. Qty</th>
+                        <th>Return. Qty</th>
+                        <th>Rate</th>
                         
-                        <td>Date</td>
-                        <td>Action</td>
+                        <th>Action</th>
                         
                   
                     </tr>
@@ -78,7 +78,7 @@
                             <input type="text" class="form-control" name="item[<?php echo $sno ?>][return_qty]" value="<?= $item->return_qty ?>" />
                         </td>
                         <td>
-                            <input type="date" class="form-control" name="item[<?php echo $sno ?>][return_date]" value="<?= date("Y-m-d",$item->return_date); ?>" />
+                            <input type="date" class="form-control" name="item[<?php echo $sno ?>][return_rate]" value="<?= date("Y-m-d",$item->return_rate); ?>" />
                         </td>
                         
                         <td><i class='fa fa-trash-o' style='cursor:pointer' onclick='deleteItemRow(this)' ></i></td>

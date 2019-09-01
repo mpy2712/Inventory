@@ -15,6 +15,8 @@ class Issue extends CI_Controller {
     }
     function index(){
         $data['issue_lists'] = $this->issue->lists();
+        
+        
         $this->template->load('default_layout', 'issues/index',$data);
     }
     
@@ -101,6 +103,10 @@ class Issue extends CI_Controller {
     function edit($issue_id){
         if ( $issue_id ){
             $data['issue'] = $this->issue->get_issue_slip($issue_id);
+            if ( !empty($data) && $data['issue']->has_return_slip != '' && (int)$data['issue']->has_return_slip != '' > 0){
+                $this->session->set_flashdata("error",'An return slip has been generated against this issue slip,that\'s why you cannot edit or delete this issue slip');
+                redirect("/issue");
+            }
             
             $data['item_details'] = $this->issue->get_issue_item_details($issue_id);
 
