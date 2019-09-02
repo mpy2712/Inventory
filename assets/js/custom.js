@@ -1,5 +1,5 @@
  $(document).ready(function(){
-     validateMrn();
+     //validateMrn();
      validate_register_form();
  });
  
@@ -216,7 +216,7 @@ let validateMrn = () => $("#mrn_form").validate({
         },
         submitHandler: function (e) {
             //i.show(), r.hide(), 
-            alert();
+            this.form.submit();
         }
     });
     
