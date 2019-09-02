@@ -196,7 +196,9 @@ if ($this->session->userdata('is_authenticated') == FALSE) {
 <!-- <script src="<?php echo base_url(); ?>data/morris-data.js"></script> -->
 <script src="<?php echo base_url(); ?>dist/js/sb-admin-2.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
-
+<script src="<?php echo base_url(); ?>assets/js/tree/jquery.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/tree/jquery_003.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/tree/demo.js"></script>
 <!--<script src="<?php echo base_url(); ?>assets/js/app.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.slimscroll.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.slimscroll.min.js"></script>-->
@@ -207,7 +209,116 @@ if ($this->session->userdata('is_authenticated') == FALSE) {
 
 
 
-
+<script>
+ $(document).ready(function() {
+        $('.all_add').click(function(){
+            var id=this.id.split("_"); 
+            if($('#'+this.id).attr('checked')==true)
+             {                 
+              $('.add_permission_'+id[1]).attr('checked',true);
+             }
+            else  if($('#'+this.id).attr('checked')==false)
+             {
+                $('.add_permission_'+id[1]).removeAttr('checked');
+             }
+        });
+        
+        
+        $('.all_edit').click(function(){
+            var id1=this.id.split("_");
+         if($("#alledit_"+id1[1]).attr('checked')==true)
+             { 
+              $('.edit_permission_'+id1[1]).attr('checked',true);
+             }
+            else if($("#alledit_"+id1[1]).attr('checked')==false)
+             {
+                $('.edit_permission_'+id1[1]).removeAttr('checked');
+             }
+        });
+        
+         $('.all_delete').click(function(){
+            var id2=this.id.split("_");
+         if($("#alldelete_"+id2[1]).attr('checked')==true)
+             { 
+              $('.delete_permission_'+id2[1]).attr('checked',true);
+             }
+            else if($("#alldelete_"+id2[1]).attr('checked')==false)
+             {
+                $('.delete_permission_'+id2[1]).removeAttr('checked');
+             }
+        });
+      
+      
+       $('.all_view').click(function(){
+            var id3=this.id.split("_");
+         if($("#allview_"+id3[1]).attr('checked')==true)
+             { 
+              $('.view_permission_'+id3[1]).attr('checked',true);
+             }
+            else if($("#allview_"+id3[1]).attr('checked')==false)
+             {
+                $('.view_permission_'+id3[1]).removeAttr('checked');
+             }
+        });
+        
+         $('.all_approve').click(function(){
+            var id4=this.id.split("_");
+            
+         if($("#allapproval_"+id4[1]).attr('checked')==true)
+             { 
+              $('.approval_permission_'+id4[1]).attr('checked',true);
+             }
+            else if($("#allapproval_"+id4[1]).attr('checked')==false)
+             {
+                $('.approval_permission_'+id4[1]).removeAttr('checked');
+             }
+        });
+        
+        
+        $('.all_cancel').click(function(){
+            var id4=this.id.split("_");
+         if($("#allcancel_"+id4[1]).attr('checked')==true)
+             { 
+              $('.cancel_permission_'+id4[1]).attr('checked',true);
+             }
+            else if($("#allcancel_"+id4[1]).attr('checked')==false)
+             {
+                $('.cancel_permission_'+id4[1]).removeAttr('checked');
+             }
+        });
+        
+        
+      $('input[name="role_form[]"]').click(function(){
+          var frm_id=this.id.split("_");
+          if($('#'+this.id).attr('checked')==true)
+              {
+                 
+                   $('#add_permission_'+frm_id[2]).attr('checked','true');
+                   $('#edit_permission_'+frm_id[2]).attr('checked','true');
+                   $('#delete_permission_'+frm_id[2]).attr('checked','true');
+                   $('#view_permission_'+frm_id[2]).attr('checked','true');
+                   $('#approval_permission_'+frm_id[2]).attr('checked','true');
+                   $('#cancel_permission_'+frm_id[2]).attr('checked','true');
+              }
+              else
+                  {
+                   $('#add_permission_'+frm_id[2]).removeAttr('checked');
+                   $('#edit_permission_'+frm_id[2]).removeAttr('checked');
+                   $('#delete_permission_'+frm_id[2]).removeAttr('checked');
+                   $('#view_permission_'+frm_id[2]).removeAttr('checked');
+                   $('#approval_permission_'+frm_id[2]).removeAttr('checked');
+                   $('#cancel_permission_'+frm_id[2]).removeAttr('checked');
+                  }
+      });
+      
+      $('.module_cat_checked').click(function(){
+        $(this).parent().parent().siblings('li').find("input[type='checkbox']").attr('checked', this.checked);
+        });
+      $('.full_module').click(function(){
+         $(this).parent().siblings('ul').find("input[type='checkbox']").attr('checked', this.checked);
+      });
+   });
+</script>
 
 
 </body>
