@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/xampp/htdocs/Inventory/application/views/mrn/edit.php</file>
+            <file>file:/C:/xampp/htdocs/Inventory/application/views/issues/edit.php</file>
             <file>file:/C:/xampp/htdocs/Inventory/application/controllers/Mrn.php</file>
-            <file>file:/C:/xampp/htdocs/Inventory/application/views/mrn/create.php</file>
+            <file>file:/C:/xampp/htdocs/Inventory/application/controllers/Issue.php</file>
             <file>file:/C:/xampp/htdocs/Inventory/assets/js/custom.js</file>
-            <file>file:/C:/xampp/htdocs/Inventory/application/views/layouts/default_layout.php</file>
         </group>
     </open-files>
 </project-private>
