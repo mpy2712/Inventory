@@ -221,7 +221,7 @@
         </div>
     </div>
    
-    <div class="container">  
+    <div class="form-group">  
         <ul class="nav nav-tabs">
         <?php $i=0; 
         foreach($module as $key=>$value){
@@ -251,24 +251,6 @@ foreach($module as $key=>$value){
             } ?>
     
         <div class="<?php echo $className; ?>" id="<?php echo $value['moduleName']; ?>">           
-            <div align="center" style="margin-bottom:20px; width:500px; margin-left:330px;">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr> 
-                    <td width="50" align="left" valign="bottom" class="f12">
-                    <input type="checkbox" id="alladd_<?php echo $value['id']; ?>"  class="all_add" /><i class="fa fa-plus-square" style="font-size:36px;"></i></td>
-                    <td width="50" align="left" valign="bottom"> 
-                    <input type="checkbox" id="alledit_<?php echo $value['id']; ?>" class="all_edit" /><i class="fa fa-edit" style="font-size:36px"></i></td>
-                    <td width="55" align="left" valign="bottom"> 
-                    <input type="checkbox" id="alldelete_<?php echo $value['id']; ?>"  class="all_delete" /><i class="fa fa-trash-o" style="font-size:36px"></i></td>
-                    <td width="50" align="left" valign="bottom"> 
-                    <input type="checkbox" id="allview_<?php echo $value['id']; ?>"  class="all_view" /><i class="fa fa-search-plus" style="font-size:36px"></i></td>
-                    <td width="70" align="left" valign="bottom"> 
-                    <input type="checkbox" id="allapproval_<?php echo $value['id']; ?>"  class="all_approve" /><i class="fa fa-check-square-o" style="font-size:36px;"></i></td>
-                    <td align="left" valign="bottom"> 
-                    <input type="checkbox" id="allcancel_<?php echo $value['id']; ?>"  class="all_cancel" /><i class="fa fa-remove" style="font-size:36px"></i></td>
-                </tr>
-                </table>
-            </div>	         
                 <input type="checkbox" class="full_module">
                 <span style="font-weight: bold;font-style: italic;color: red">All Module</span>
            </div> 
@@ -283,6 +265,20 @@ foreach($module as $key=>$value){
            <ul style="display: block;">
               <li class="last"><span class="f12" style="font-style: italic;color: #0a0;font-weight: bold">
               <input type="checkbox"  class="module_cat_checked" >All</span></li>
+              <li class="last">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="300"><span class="f12"></span></td>
+                        <td width="50" align="left"><i class="fa fa-plus-square" style="font-size:20px;"></i></td>
+                        <td width="50" align="left"><i class="fa fa-edit" style="font-size:20px"></i></td>
+                        <td width="55" align="left"><i class="fa fa-trash-o" style="font-size:20px"></i></td>
+                        <td width="50" align="left"><i class="fa fa-search-plus" style="font-size:20px"></i></td>
+                        <td width="70" align="left"><i class="fa fa-check-square-o" style="font-size:20px;"></i></td>
+                        <td  align="left"><i class="fa fa-remove" style="font-size:20px"></i></td>
+                       
+                    </tr>
+                </table>
+        </li>
          <?php 
          foreach($module[$key]['submodule'][$k]['userForms'] as $user=>$usermodule)
           { 
