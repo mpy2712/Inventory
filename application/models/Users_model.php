@@ -87,6 +87,13 @@ class Users_model extends CI_Model {
                 ->result();
     }
 
+    function getRoles(){
+        $this->db->select("*");     
+        $this->db->from("role");
+        $this->db->where('roleStatus','Y');
+        return $this->db->get()->result();
+    }
+
 }
 
 ?>

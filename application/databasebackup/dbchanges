@@ -1,3 +1,7 @@
+============== new changes =================
+ALTER TABLE `users` Add  `roleID` INT(11) NOT NULL;
+===========================================
+
 ================= Manoj   -2-9-2019 =======
 
 CREATE TABLE `roledetails` (
