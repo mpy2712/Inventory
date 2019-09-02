@@ -1,3 +1,75 @@
+================= Manoj   -2-9-2019 =======
+
+CREATE TABLE `roledetails` (
+  `id` int(11) NOT NULL,
+  `moduleID` int(10) NOT NULL,
+  `userFormID` int(10) NOT NULL,
+  `roleID` int(10) NOT NULL,
+  `rolePermission` varchar(250) NOT NULL,
+  `isAdd` int(10) NOT NULL,
+  `isEdit` int(10) NOT NULL,
+  `isDelete` int(10) NOT NULL,
+  `isView` int(10) NOT NULL,
+  `isApprove` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `roledetails`
+--
+ALTER TABLE `roledetails`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `roledetails`
+--
+ALTER TABLE `roledetails`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL,
+  `roleName` text NOT NULL,
+  `moduleAllowed` varchar(50) DEFAULT NULL,
+  `roleStatus` enum('Y','N') DEFAULT 'Y',
+  `createdDate` int(11) DEFAULT NULL,
+  `created_by` int(10) DEFAULT NULL,
+  `modifiedDate` int(11) DEFAULT NULL,
+  `modified_by` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `role`
+--
+ALTER TABLE `role`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `role`
+--
+ALTER TABLE `role`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+===========================================
+
+
 =============DINESH --- 2-9-19
 
 ALTER TABLE `users` ADD `created_by` INT NOT NULL AFTER `finYearID`, ADD `created_date` DATETIME NOT NULL AFTER `created_by`, ADD `updated_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `created_date`;

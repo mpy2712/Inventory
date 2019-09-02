@@ -255,17 +255,17 @@ foreach($module as $key=>$value){
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr> 
                     <td width="50" align="left" valign="bottom" class="f12">
-                    <input type="checkbox" id="alladd_<?php echo $value['id']; ?>"  class="all_add" />Add</td>
+                    <input type="checkbox" id="alladd_<?php echo $value['id']; ?>"  class="all_add" /><i class="fa fa-plus-square" style="font-size:36px;"></i></td>
                     <td width="50" align="left" valign="bottom"> 
-                    <input type="checkbox" id="alledit_<?php echo $value['id']; ?>" class="all_edit" />Edit</td>
+                    <input type="checkbox" id="alledit_<?php echo $value['id']; ?>" class="all_edit" /><i class="fa fa-edit" style="font-size:36px"></i></td>
                     <td width="55" align="left" valign="bottom"> 
-                    <input type="checkbox" id="alldelete_<?php echo $value['id']; ?>"  class="all_delete" />Delete</td>
+                    <input type="checkbox" id="alldelete_<?php echo $value['id']; ?>"  class="all_delete" /><i class="fa fa-trash-o" style="font-size:36px"></i></td>
                     <td width="50" align="left" valign="bottom"> 
-                    <input type="checkbox" id="allview_<?php echo $value['id']; ?>"  class="all_view" />View</td>
+                    <input type="checkbox" id="allview_<?php echo $value['id']; ?>"  class="all_view" /><i class="fa fa-search-plus" style="font-size:36px"></i></td>
                     <td width="70" align="left" valign="bottom"> 
-                    <input type="checkbox" id="allapproval_<?php echo $value['id']; ?>"  class="all_approve" />Approval</td>
+                    <input type="checkbox" id="allapproval_<?php echo $value['id']; ?>"  class="all_approve" /><i class="fa fa-check-square-o" style="font-size:36px;"></i></td>
                     <td align="left" valign="bottom"> 
-                    <input type="checkbox" id="allcancel_<?php echo $value['id']; ?>"  class="all_cancel" />Cancel</td>
+                    <input type="checkbox" id="allcancel_<?php echo $value['id']; ?>"  class="all_cancel" /><i class="fa fa-remove" style="font-size:36px"></i></td>
                 </tr>
                 </table>
             </div>	         

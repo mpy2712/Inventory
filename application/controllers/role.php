@@ -25,14 +25,16 @@ class Role extends CI_Controller {
     }
 
     public function roleView() {
-        $data = $this->role->listModuleSubmoduleUserForms();      
-        $this->template->load('default_layout', 'user_rights/roleCreation', $data);
+        $query = $this->db->get("role");
+        $data['records'] = $query->result();
+        $this->template->load('default_layout', 'user_rights/roleView', $data);
     }
 
     public function add_role() {
-        $query = $this->db->get("role");
-        $data['records'] = $query->result();
+        $data = $this->role->listModuleSubmoduleUserForms();      
         $this->template->load('default_layout', 'user_rights/roleCreation', $data);
+
+       
     }
 
     public function saveRoleData() {
@@ -94,7 +96,7 @@ class Role extends CI_Controller {
         }
         $query = $this->db->get("role");
         $data['records'] = $query->result();
-        $this->template->load('default_layout', 'user_rights/formdataView', $data);
+        $this->template->load('default_layout', 'user_rights/roleView', $data);
     }
 
     public function myformAjax($id) {
