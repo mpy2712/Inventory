@@ -57,9 +57,20 @@
                         <?php endforeach;?>
                     </select>
                   </div>
+                  
                 </div>
                   
-                  
+                <div class="form-group">
+                  <label for="fin_year" class="col-sm-2 control-label">Roles</label>
+
+                  <div class="col-sm-10">
+                      <select class="form-control" name="role" id="role">
+                        <?php foreach ($role as $r): ?>
+                        <option value="<?php echo $r->id ;?>"><?php echo $r->roleName;?></option>
+                        <?php endforeach;?>
+                    </select>
+                  </div>
+             </div>
                   
                   
                                  

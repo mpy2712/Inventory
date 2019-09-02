@@ -120,6 +120,7 @@ class Users extends CI_Controller {
             $data['name'] = $this->input->post('name');
             $data['email'] = $this->input->post('email');
             $data['finYearID'] = $this->input->post('fin_year');
+            $data['roleID']=$this->input->post('role');
             
             
             $data['dob'] = date("Y-m-d", strtotime($this->input->post('dob')));
@@ -140,6 +141,7 @@ class Users extends CI_Controller {
         }
         $data['title']='Create User';
         $data['fin_year'] = $this->user->getFinYears();
+        $data['role'] = $this->user->getRoles();
         $this->template->load('default_layout', 'users/register',$data);
     }
     
