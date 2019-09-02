@@ -1,3 +1,10 @@
+=============DINESH --- 2-9-19
+
+ALTER TABLE `users` ADD `created_by` INT NOT NULL AFTER `finYearID`, ADD `created_date` DATETIME NOT NULL AFTER `created_by`, ADD `updated_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `created_date`;
+
+=============================
+
+
 
 =================== DINESH ALTER COMMAND ============
 ALTER TABLE `return_item_details` CHANGE `return_date` `return_rate` INT(11) NOT NULL;
