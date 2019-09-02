@@ -1,5 +1,6 @@
  $(document).ready(function(){
-     //validateMrn();
+     validateMrn();
+     validate_register_form();
  });
  
     var baseurl = 'http://localhost/Inventory/';
@@ -111,12 +112,12 @@ function select_issue_item(item_id,item_name,item_code,batch_no){
                     "<td></td>"+
                     "<td>"+item_name + "</td>" + 
                     "<td>"+item_code + "</td>"+
-                    "<td><input type='text'  class='form-control' name='item["+item_id_incr+"][batch_no]' placeholder='Batch No' id='batch_no'/> </td>"+
-                    "<td><input type='number'  class='form-control' name='item["+item_id_incr+"][issue_qty]' placeholder='Issue Qty'  id='item_issue_qty'/> </td>"+
-                    "<td><input type='date' class='form-control' name='item["+item_id_incr+"][issue_date]' id='item_rec_qty'/> "+
-                    "<input type='hidden' name='item["+item_id_incr+"][item_id]'  value='"+item_id+"' />"+
+                    "<td><input type='text'  class='form-control' name='item[batch_no][]' placeholder='Batch No' id='batch_no'/> </td>"+
+                    "<td><input type='number'  class='form-control' name='item[issue_qty][]' placeholder='Issue Qty'  id='item_issue_qty'/> </td>"+
+                    "<td><input type='date' class='form-control' name='item[issue_date][]' id='item_rec_qty'/> "+
+                    "<input type='hidden' name='item[item_id][]'  value='"+item_id+"' />"+
                     "</td>"+
-                    "<td><i class='fa fa-trash-o' style='cursor:pointer' onclick='deleteItemRow(this)' ></i></td>"
+                    "<td><i class='fa fa-trash-o' style='cursor:pointer' onclick='deleteItemRow(this)' ></i> &nbsp;&nbsp;&nbsp;<i style='cursor:pointer' class='fa fa-plus' aria-hidden='true' style='corsor:pointer' onclick='addItemRow(this)' ></i></td>"
                 "</tr>";
                     item_id_incr ++;
     
@@ -218,3 +219,50 @@ let validateMrn = () => $("#mrn_form").validate({
             alert();
         }
     });
+    
+
+ let validate_register_form = () => $("#user_register").validate({
+        
+        rules: {
+            name: {required: true},
+            email: { required: true,email:true},
+            password: {required: true,minlength: 6},
+            password: {required: true,minlength: 6},
+            confirm_password: {
+                required: true,
+                minlength: 6,
+                equalTo: "#password"
+            },
+            dob:{
+                required:true
+            }
+        },
+        messages: {},
+        errorElement: "em",
+        errorPlacement: function (error, element) {
+            
+            // Add the `invalid-feedback` class to the error element
+            error.addClass("invalid-feedback");
+
+            if (element.prop("type") === "checkbox") {
+                error.insertAfter(element.next("label"));
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-invalid").removeClass("is-valid");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).addClass("is-valid").removeClass("is-invalid");
+        },
+        success: function (e) {
+            e.closest(".form-group").removeClass("has-error")
+        },
+        submitHandler: function (e) {
+            //i.show(), r.hide(), 
+            this.form.submit();
+            
+        }
+    });
+

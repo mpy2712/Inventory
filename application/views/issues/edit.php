@@ -54,13 +54,13 @@
                         <td><?= ++$sn ?></td>
                         <td><?= $item->itemName ?></td>
                         <td><?= $item->itemCode ?></td>
-                        <td>   <input type="text" class="form-control" name="item[<?php echo $index ?>][batch_no]" value="<?= $item->batch_no ?>" /> </td>
+                        <td>   <input type="text" class="form-control" name="item[batch_no][]" value="<?= $item->batch_no ?>" /> </td>
                         <td>
-                            <input type="text" class="form-control" name="item[<?php echo $index ?>][issue_qty]" value="<?= $item->issue_qty ?>"/> 
-                            <input type="hidden" class="form-control" name="item[<?php echo $index ?>][item_id]" value="<?= $item->item_id ?>"/> 
+                            <input type="text" class="form-control" name="item[issue_qty][]" value="<?= $item->issue_qty ?>"/> 
+                            <input type="hidden" class="form-control" name="item[item_id][]" value="<?= $item->item_id ?>"/> 
                         </td>
-                        <td><input type="date" class="form-control" name="item[<?php echo $index ?>][issue_date]" value="<?= date("Y-m-d",$item->issue_date) ?>"/> </td>
-                        <td><i class='fa fa-trash-o' style='cursor:pointer' onclick='deleteItemRow(this)' ></i></td>
+                        <td><input type="date" class="form-control" name="item[issue_date][]" value="<?= date("Y-m-d",$item->issue_date) ?>"/> </td>
+                        <td><i class='fa fa-trash-o' style='cursor:pointer' onclick='deleteItemRow(this)' ></i>&nbsp;&nbsp;&nbsp;<i style='cursor:pointer' class='fa fa-plus' aria-hidden='true' style='corsor:pointer' onclick='addItemRow(this)' ></i></td>
                     </tr>
                     <?php $index++; endforeach;?>
                     <?php else:?>

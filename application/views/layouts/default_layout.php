@@ -129,6 +129,11 @@ if ($this->session->userdata('is_authenticated') == FALSE) {
                                 <li>
                                 <a href="<?php echo base_url() . 'itemBasket/itemBasketView' ?>">Item Creation</a>
                                 </li>
+                                <li>
+                                
+                                <a href="<?php echo base_url() . 'users/lists' ?>">Users</a>
+                                </li>
+                                
                                 
                                 
                             </ul>

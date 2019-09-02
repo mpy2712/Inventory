@@ -32,12 +32,12 @@ class Common_model extends CI_Model {
             return $this->db->delete($table_name);
         }
     }
-    function get_single_record($tableName,$condition){
+    function get_single_record($tableName,$conditions){
         if ( !empty($conditions) ){
             foreach($conditions as $key=>$val){
                 $this->db->where($key,$val);
             }
-            return $this->db->get($table_name)->row();
+            return $this->db->get($tableName)->row();
         }
     }
     

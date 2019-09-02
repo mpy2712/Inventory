@@ -68,6 +68,24 @@ class Users_model extends CI_Model {
             return false;
         }
     }
+    
+    function getFinYears(){
+        $this->db->select("*");     
+        $this->db->from("financialYear");
+        $this->db->where('status','Active');
+        return $this->db->get()->result();
+    }
+    
+    function get_user_lists(){
+        return $this->db->select("U.*,FY.finYear")
+                ->from("users as U")
+                ->join("financialYear as FY","FY.id = U.finYearID ")
+                ->where("FY.status",'Active')
+                ->where("U.isAdmin",0)
+                ->where("U.locked",0)
+                ->get()
+                ->result();
+    }
 
 }
 

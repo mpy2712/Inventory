@@ -134,7 +134,7 @@ class Mrn extends CI_Controller {
             $this->form_validation->set_rules('vendor_id', 'Vendor Name', 'trim|required');
             $this->form_validation->set_rules('item[]', 'Item Details', 'trim|required');
             
-            
+             
             
             if ($this->form_validation->run() == FALSE) {
                 $data['mrn'] = $this->mrn->get_mrn($mrn_id);

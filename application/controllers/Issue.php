@@ -24,6 +24,7 @@ class Issue extends CI_Controller {
         
         if ( $this->input->post() ){
             
+            
             $this->load->library('form_validation');
 
             $this->form_validation->set_rules('issue_no', 'Issue No', 'trim|required');
@@ -49,11 +50,11 @@ class Issue extends CI_Controller {
             {
                 $item_details = $this->input->post('item');
                 if ( !empty($item_details) ){
-                    foreach ($item_details as $key=>$val){
-                        $insert_item_details['item_id'] = $val['item_id'];
-                        $insert_item_details['issue_qty'] = $val['issue_qty'];
-                        $insert_item_details['issue_date'] = strtotime(date("Y-m-d",strtotime($val['issue_date']))) ;
-                        $insert_item_details['batch_no'] = $val['batch_no'];
+                    foreach ($item_details['batch_no'] as $key=>$val){
+                        $insert_item_details['item_id'] = $item_details['item_id'][$key];
+                        $insert_item_details['issue_qty'] = $item_details['issue_qty'][$key];
+                        $insert_item_details['issue_date'] = strtotime(date("Y-m-d",strtotime($item_details['issue_date'][$key]))) ;
+                        $insert_item_details['batch_no'] = $val;
                         $insert_item_details['issue_id'] = $issue_id;
                         $insert_item_details['created_date'] = date("Y-m-d h:i:s");
                         
@@ -62,10 +63,10 @@ class Issue extends CI_Controller {
                         if ( $transaction_detail_id ){
                             // Stock Evaluation
                         
-                            $stock['item_id'] = $val['item_id'];
+                            $stock['item_id'] = $item_details['item_id'][$key];
                             $stock['transaction_id'] = $issue_id;
                             $stock['transaction_detail_id'] = $transaction_detail_id;
-                            $stock['stock_out'] = $val['issue_qty'];
+                            $stock['stock_out'] = $item_details['issue_qty'][$key];
                             $stock['transaction_type'] = 'issue';
                             $stock['created_date'] = strtotime(date("Y-m-d h:i:s"));
                             $this->common_model->insert_record('stock_evaluation',$stock);
@@ -123,6 +124,7 @@ class Issue extends CI_Controller {
     
     function update($issue_id){
       if ($issue_id && $this->input->post() ){
+          
             $this->load->library('form_validation');
 
             $this->form_validation->set_rules('issue_no', 'Issue No', 'trim|required');
@@ -160,26 +162,28 @@ class Issue extends CI_Controller {
                     $this->common_model->delete_record("issue_slip_item_details",['issue_id'=>$issue_id]);
                     $this->common_model->delete_record("stock_evaluation",['transaction_id'=>$issue_id,'transaction_type'=>'issue']);
                     
-                    foreach ($item_details as $key=>$val){
-                        $insert_item_details['item_id'] = $val['item_id'];
-                        $insert_item_details['issue_qty'] = $val['issue_qty'];
-                        $insert_item_details['issue_date'] = strtotime(date("Y-m-d",strtotime($val['issue_date']))) ;
-                        $insert_item_details['batch_no'] = $val['batch_no'];
-                        $insert_item_details['issue_id'] = $issue_id;
-                        $insert_item_details['created_date'] = date("Y-m-d h:i:s");
-                        
-                        $transaction_detail_id = $this->common_model->insert_record('issue_slip_item_details',$insert_item_details);
-                        
-                        if ( $transaction_detail_id ){
-                            // Stock Evaluation
-                        
-                            $stock['item_id'] = $val['item_id'];
-                            $stock['transaction_id'] = $issue_id;
-                            $stock['transaction_detail_id'] = $transaction_detail_id;
-                            $stock['stock_out'] = $val['issue_qty'];
-                            $stock['transaction_type'] = 'issue';
-                            $stock['created_date'] = strtotime(date("Y-m-d h:i:s"));
-                            $this->common_model->insert_record('stock_evaluation',$stock);
+                    if ( !empty($item_details) ){
+                        foreach ($item_details['batch_no'] as $key=>$val){
+                            $insert_item_details['item_id'] = $item_details['item_id'][$key];
+                            $insert_item_details['issue_qty'] = $item_details['issue_qty'][$key];
+                            $insert_item_details['issue_date'] = strtotime(date("Y-m-d",strtotime($item_details['issue_date'][$key]))) ;
+                            $insert_item_details['batch_no'] = $val;
+                            $insert_item_details['issue_id'] = $issue_id;
+                            $insert_item_details['created_date'] = date("Y-m-d h:i:s");
+
+                            $transaction_detail_id = $this->common_model->insert_record('issue_slip_item_details',$insert_item_details);
+
+                            if ( $transaction_detail_id ){
+                                // Stock Evaluation
+
+                                $stock['item_id'] = $item_details['item_id'][$key];
+                                $stock['transaction_id'] = $issue_id;
+                                $stock['transaction_detail_id'] = $transaction_detail_id;
+                                $stock['stock_out'] = $item_details['issue_qty'][$key];
+                                $stock['transaction_type'] = 'issue';
+                                $stock['created_date'] = strtotime(date("Y-m-d h:i:s"));
+                                $this->common_model->insert_record('stock_evaluation',$stock);
+                            }
                         }
                     }
                 }
