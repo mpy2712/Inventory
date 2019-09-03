@@ -1,3 +1,17 @@
+=============== financialyear table changes =============
+CREATE TABLE `financialyear` (
+  `id` int(11) NOT NULL,
+  `finYear` varchar(255) NOT NULL,
+  `status` varchar(10) NOT NULL DEFAULT 'Active',
+  `preFix` varchar(10) NOT NULL,
+  `finYearStartDate` int(11) NOT NULL,
+  `finYearEndDate` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+=========================================================
+
+
+
 ============== new changes =================
 ALTER TABLE `users` Add  `roleID` INT(11) NOT NULL;
 ===========================================
