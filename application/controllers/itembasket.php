@@ -38,13 +38,14 @@ class ItemBasket extends CI_Controller {
     }
 
     public function itemBasketAdd() {
-        retrun;
+       
         $this->load->model('ItemBasket_model');
         $hash=$this->ItemBasket_model->getNewRandHash();
         $data = array(
             'itemName' => $this->input->post('itemName'),
             'itemCode' => $hash,
             'itemDesc' => $this->input->post('itemDesc'),
+            'batch_no' => $this->input->post('batchItem'),
             'creationDate' => time()
         );        
         $this->ItemBasket_model->insert($data);
@@ -108,6 +109,7 @@ class ItemBasket extends CI_Controller {
             $data['itemName'] = $this->input->post("item_name");
             $data['itemDesc'] = $this->input->post("item_desc");
             $data['itemCode'] = $this->input->post("item_code");
+            $data['batch_no'] = $this->input->post("batchItem");
 
     
             $updated = $this->itembasket->update_item($data, $item_id);
