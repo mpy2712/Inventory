@@ -38,8 +38,11 @@ class Role extends CI_Controller {
     }
 
     public function saveRoleData() {
-        $modRes=$this->role->moduleIDS($this->input->post('role_form'));              
-        $modAllowed=implode(',',$modRes);   
+        $modRes = $this->role->moduleIDS($this->input->post('role_form'));              
+//        echo "<pre>";
+//        print_r($modRes);
+//        die;
+        $modAllowed=implode(',',array_column($modRes, 'mid'));   
         $this->load->model('Role_assignment_model');
         $data = array(
             'roleName' => $this->input->post('roleName'),

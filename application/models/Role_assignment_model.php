@@ -44,11 +44,11 @@ class Role_assignment_model extends CI_Model {
     function moduleIDS($fromID)
     {
         return $this->db->select('DISTINCT(mod.id) as mid,mod.moduleName')
-        ->from("module as mod")
-        ->join("userform as user","user.moduleID = mod.id")  
-        ->where("mod.status",'Y')  
-        ->where_in("user.id",$formID)  
-        ->get()->result();       
+            ->from("module as mod")
+            ->join("userform as user","user.moduleID = mod.id")  
+            ->where("mod.status",'Y')  
+            ->where_in("user.id",$fromID)  
+            ->get()->result_array();       
         
     }
 
