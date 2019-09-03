@@ -50,6 +50,25 @@ class Common_model extends CI_Model {
         }
         return $this->db->get($table_name)->result();
     }
+
+    function getCountRecords($table_name,$conditions=[]){       
+        $this->db->select('count(id) as totalRecords');
+        return $this->db->get($table_name)->result();
+    }
+
+    function getMonthWiseStockSummary()
+    {
+        $conditions=array('id'=>$_SESSION['finYear']);
+        $finData=$this->get_single_record('financialyear',$conditions);  
+       
+        $this->db->select('sum(stock_evaluation.stock_in) as StockIN,sum(stock_evaluation.stock_out) as StockOUT,itembasket.itemName as itemName,itembasket.ItemCode as ItemCode')->from('stock_evaluation')->join('itembasket',
+       'itembasket.id = stock_evaluation.item_id') ;          
+        $this->db->where('stock_evaluation.created_date >=', $finData->finYearStartDate);
+        $this->db->where('stock_evaluation.created_date <=', $finData->finYearEndDate);
+        $this->db->order_by("itembasket.id", "asc");
+        $this->db->group_by("itembasket.id");
+        return $this->db->get()->result(); 
+    }
     
     
     
