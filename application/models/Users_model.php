@@ -94,6 +94,22 @@ class Users_model extends CI_Model {
         return $this->db->get()->result();
     }
 
+    function getAssignRoles($assignRoleID)
+   {
+    $this->db->select("*");     
+    $this->db->from("role");
+    $this->db->where('roleStatus','Y');
+    $this->db->where('id',$assignRoleID);
+    $data['roles']= $this->db->get()->result();
+    foreach($data['roles'] as $r){
+        $this->db->select("*");     
+        $this->db->from("roledetails");
+        $this->db->where('roleID',$r->id);  
+        $data['rolesDetaiils']=$this->db->get()->result();
+    }
+    return $data;
+   }
+
 }
 
 ?>

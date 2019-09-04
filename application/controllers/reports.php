@@ -33,7 +33,7 @@ class Reports extends CI_Controller {
             $this->db->select('*')->from('stock_evaluation')->join('itembasket', 'itembasket.id = stock_evaluation.item_id')
            ;
            $this->db->where('itembasket.id',$this->input->post('item'));
-           $this->db->where('stock_evaluation.created_date >=', strtotime($this->input->post('item')));
+           $this->db->where('stock_evaluation.created_date >=', strtotime($this->input->post('frmDate')));
            $this->db->where('stock_evaluation.created_date <=', strtotime($this->input->post('toDate')));
            $this->db->order_by("itembasket.id", "asc");
            $query=$this->db->get();            
@@ -60,7 +60,7 @@ class Reports extends CI_Controller {
            {
            $this->db->where('itembasket.id',$this->input->post('item'));
            }
-           $this->db->where('stock_evaluation.created_date >=', strtotime($this->input->post('item')));
+           $this->db->where('stock_evaluation.created_date >=', strtotime($this->input->post('frmDate')));
            $this->db->where('stock_evaluation.created_date <=', strtotime($this->input->post('toDate')));
            $this->db->order_by("itembasket.id", "asc");
            $query=$this->db->get();            

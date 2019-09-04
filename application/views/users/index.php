@@ -25,7 +25,7 @@
 <?php endif;?>
 
 
-                <table width="100%" class="table table-striped table-bordered table-hover" >
+                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example" >
                         <thead>
                             <tr>
                        
@@ -33,11 +33,10 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>DOB</th>
-<!--                            <th>Locked</th>
-                            -->
                             <th>Fin Year</th>
                             <th>Updated Date</th>
-                            <th colspan="2">Action</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                             
                         </tr>
                     </thead>

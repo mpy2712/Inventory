@@ -24,7 +24,7 @@
 <?php endif;?>
 
 
-                <table width="100%" class="table table-striped table-bordered table-hover" >
+                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
                             <tr>
                        
@@ -34,9 +34,9 @@
                             <th>Phone Number</th>
                             <th>Address</th>
                             <th>Created Date</th>
-                            <th>Updated Date</th>
-                            
-                            <th colspan="2">Action</th>
+                            <th>Updated Date</th>                            
+                            <th>Edit</th>
+                            <th>Delete</th>
                             
                         </tr>
                     </thead>

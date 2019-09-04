@@ -27,7 +27,7 @@ class Users extends CI_Controller {
         if ($this->session->userdata('is_authenticated') == FALSE) {
             redirect('users/login'); // the user is not logged in, redirect them!
         } else {
-            $data['title'] = 'Dashboard - Tech Arise';
+            $data['title'] = 'Dashboard - Inventory';
             $data['metaDescription'] = 'Dashboard';
             $data['metaKeywords'] = 'Dashboard';
             $this->user->setUserID($this->session->userdata('user_id'));
@@ -73,7 +73,9 @@ class Users extends CI_Controller {
             $result = $this->user->login();
 
             if ($result) {
+                
                 foreach ($result as $row) {
+                    $roles=$this->user->getAssignRoles($row->finYearID);
                     $sessArray = array(
                         'user_id' => $row->user_id,
                         'name' => $row->name,
@@ -81,11 +83,12 @@ class Users extends CI_Controller {
                         'is_authenticated' => TRUE,
                         'finYear'=>$row->finYear,
                         'user_row_id'=>$row->id,
-                        'finYear'=>$row->finYearID
+                        'finYear'=>$row->finYearID,
+                        'allowedModule'=>json_decode(json_encode($roles), true)
                     );
                     $this->session->set_userdata($sessArray);
                 }
-
+               
                 redirect('dashboard/index');
             } else {
                 redirect('users/login?msg=1');

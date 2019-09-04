@@ -9,8 +9,7 @@
 
                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
-                            <tr>
-                       
+                            <tr>                       
                             <th>Sr. No</th>   
                             <th>OP Number</th>                         
                             <th>Item Name</th>

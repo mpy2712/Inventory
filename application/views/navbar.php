@@ -138,10 +138,11 @@
                                             </thead>
                                             <tbody>
                                             <?php
-                                            $i=1;
+                                            $i=1;                                          
                                             foreach($stockSummary as $key=>$value){
+                                                $totalStock='';
                                                 $stockINQty=$value->StockIN;
-                                                $stockQutQty=-$value->StockOUT;
+                                                $stockQutQty=$value->StockOUT;
                                                 $totalStock=$stockINQty-$stockQutQty;
                                                 ?>
                                                 <tr>

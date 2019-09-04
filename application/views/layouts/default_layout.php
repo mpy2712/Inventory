@@ -213,7 +213,6 @@ if ($this->session->userdata('is_authenticated') == FALSE) {
 <!-- <script src="<?php echo base_url(); ?>assets/js/additional-methods.min.js"></script> -->
 
 
-
 <script>
  $(document).ready(function() {        
         
@@ -249,6 +248,12 @@ if ($this->session->userdata('is_authenticated') == FALSE) {
    });
 </script>
 
-
+<script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+    </script>
 </body>
 </html>
